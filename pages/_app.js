@@ -1,5 +1,6 @@
 import Amplify from 'aws-amplify';
 import '@aws-amplify/ui-react';
+import { AuthProvider } from '../context/AuthContext';
 import '../styles/globals.css';
 
 Amplify.configure({
@@ -19,7 +20,11 @@ Amplify.configure({
 });
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  return (
+    <AuthProvider>
+      <Component {...pageProps} />
+    </AuthProvider>
+  );
 }
 
 export default MyApp;
