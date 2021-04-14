@@ -1,6 +1,8 @@
+import type { AppProps } from 'next/app';
 import Amplify from 'aws-amplify';
 import '@aws-amplify/ui-react';
 import { AuthProvider } from '../context/AuthContext';
+import '../lib/font-awesome';
 import '../styles/globals.css';
 
 Amplify.configure({
@@ -19,7 +21,7 @@ Amplify.configure({
     process.env.NEXT_PUBLIC_APPSYNC_AUTHENTICATION_TYPE,
 });
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider>
       <Component {...pageProps} />
