@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import SignUpWizard from '../components/SignUpWizard';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -112,7 +113,7 @@ export default function Home() {
 
           {/* modal content */}
           <Transition
-            className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6"
+            className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
             show={isModalOpen}
             enter="ease-out duration-300"
             enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -121,33 +122,8 @@ export default function Home() {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div>
-              <FontAwesomeIcon
-                icon="kiwi-bird"
-                className="text-blue text-2xl m-auto block"
-              />
-              <div className="mt-3 text-center sm:mt-5">
-                <h3
-                  className="text-xl leading-6 font-bold text-gray-900"
-                  id="modal-title"
-                >
-                  Sign Up
-                </h3>
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Consequatur amet labore.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="mt-5 sm:mt-6">
-              <button
-                type="button"
-                className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
-              >
-                Go back to dashboard
-              </button>
+            <div className="bg-white w-full mx-auto rounded-lg z-50 overflow-y-auto max-h-full">
+              <SignUpWizard />
             </div>
           </Transition>
         </div>
