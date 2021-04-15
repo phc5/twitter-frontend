@@ -4,7 +4,7 @@ export default function CreateAccountStep({ setStep }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [birthdate, setBirthDate] = useState('');
-
+  console.log(name, email, birthdate);
   return (
     <>
       <div className="pl-1 pr-4 py-1 h-12">
@@ -35,7 +35,7 @@ export default function CreateAccountStep({ setStep }) {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             className="w-full bg-lightblue text-lg focus:outline-none"
-            type="text"
+            type="email"
           />
         </div>
         <p className="font-bold">Date of birth</p>
@@ -48,7 +48,7 @@ export default function CreateAccountStep({ setStep }) {
             value={birthdate}
             onChange={(event) => setBirthDate(event.target.value)}
             className="w-full bg-lightblue text-lg focus:outline-none"
-            type="text"
+            type="date"
           />
         </div>
       </div>
