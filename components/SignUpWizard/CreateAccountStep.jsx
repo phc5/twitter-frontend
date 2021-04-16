@@ -16,7 +16,7 @@ export default function CreateAccountStep({ setStep }) {
       <div className="pl-1 py-1 mb-4 h-12">
         <button
           className={`rounded-full bg-blue font-bold text-white mt-2 p-1 px-3 relative right-0 float-right hover:bg-darkblue focus:outline-none ${
-            (!name || !email || !birthdate) && 'opacity-50 cursor-not-allowed'
+            (!name || !email || !birthdate) && 'opacity-50 pointer-events-none'
           }`}
           onClick={() => setStep(1)}
         >
@@ -24,7 +24,7 @@ export default function CreateAccountStep({ setStep }) {
         </button>
       </div>
       <div className="flex justify-between items-center pb-4">
-        <p className="text-2xl font-bold">Create Your Account</p>
+        <p className="text-2xl font-bold">Create your account</p>
       </div>
       <div className="w-full bg-lightblue border-b-2 border-dark mb-8 p-2">
         <label htmlFor="name" className="text-dark">
@@ -65,7 +65,7 @@ export default function CreateAccountStep({ setStep }) {
       </div>
       <p className="text-dark">
         This will not be shown publicly. Confirm your own age, even if this
-        account is for business, a pet, or something else.
+        account is for a business, a pet, or something else.
       </p>
     </div>
   );
