@@ -13,8 +13,6 @@ export const AuthProvider = ({ children }: Props) => {
   const [authState, setAuthState] = useState(null);
   const [user, setUser] = useState(null);
   const router = useRouter();
-  console.log('in AuthContext');
-  console.log(user);
 
   useEffect(() => {
     return onAuthUIStateChange((nextAuthState, authData) => {
