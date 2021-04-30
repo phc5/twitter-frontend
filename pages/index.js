@@ -1,15 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { Auth } from 'aws-amplify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SignUpModal from '../components/SignUpModal';
 import SignInModal from '../components/SignInModal';
+import { AuthContext } from '../context/AuthContext';
+import { AppContext } from '../context/AppContext';
 
 export default function Home() {
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+  const { loading, setLoading } = useContext(AppContext);
+  const { setUser } = useContext(AuthContext);
+  const router = useRouter();
 
-  return (
+  useEffect(() => {
+    async function getAuthenticatedUser() {
+      try {
+        const user = await Auth.currentAuthenticatedUser();
+        setUser(user);
+        router.push('/home');
+      } catch (error) {
+        setLoading(false);
+      }
+    }
+    getAuthenticatedUser();
+  }, []);
+
+  return loading ? (
+    <div className="flex flex-col md:flex-row w-full h-screen">
+      <FontAwesomeIcon icon="kiwi-bird" className="text-blue text-5xl m-auto" />
+    </div>
+  ) : (
     <div className="flex flex-col md:flex-row w-full h-screen">
       <Head>
         <title>Create Next App</title>

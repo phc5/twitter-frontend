@@ -8,9 +8,6 @@ export default function Nav() {
           <Link href="/">Root</Link>
         </li>
         <li>
-          <Link href="/login">Login</Link>
-        </li>
-        <li>
           <Link href="/home">Home</Link>
         </li>
       </ul>

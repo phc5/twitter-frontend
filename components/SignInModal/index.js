@@ -6,7 +6,6 @@ export default function SignInModal({
   isSignInModalOpen,
   setIsSignInModalOpen,
 }) {
-  console.log(isSignInModalOpen);
   return (
     <div
       className={`${

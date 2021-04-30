@@ -4,11 +4,11 @@ import Layout from '../components/Layout';
 import { AuthContext } from '../context/AuthContext';
 
 export default function Home() {
-  const { user, authState } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const router = useRouter();
 
   useEffect(() => {
-    if (!user) router.push('/login');
+    if (!user) router.push('/');
   }, [user]);
 
   if (!user) {
