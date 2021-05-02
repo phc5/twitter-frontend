@@ -29,7 +29,7 @@ export default function Home() {
   }, []);
 
   return loading ? (
-    <div className="flex flex-col md:flex-row w-full h-screen">
+    <div className="flex flex-col md:flex-row w-full h-screen bg-black">
       <FontAwesomeIcon icon="kiwi-bird" className="text-blue text-5xl m-auto" />
     </div>
   ) : (

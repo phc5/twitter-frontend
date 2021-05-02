@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import { AuthContext } from '../context/AuthContext';
 
-export default function Home() {
+export default function Messages() {
   const { user } = useContext(AuthContext);
   const router = useRouter();
 
@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="w-997">HOME</div>
+      <div className="w-997">MESSAGES</div>
     </Layout>
   );
 }
