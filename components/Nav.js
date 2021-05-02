@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NAVIGATION_ITEMS = [
@@ -11,7 +12,7 @@ const NAVIGATION_ITEMS = [
 
 export default function Nav() {
   return (
-    <nav className="flex flex-col w-64">
+    <nav className="flex flex-col w-60">
       <Link href="/home" passHref>
         <a className="p-3">
           <FontAwesomeIcon icon="kiwi-bird" className="text-white text-2xl" />
@@ -27,12 +28,18 @@ export default function Nav() {
 }
 
 function NavigationItems() {
+  const { pathname } = useRouter();
+
   return (
     <>
       {NAVIGATION_ITEMS.map(({ displayName, href, icon }) => {
         return (
           <Link href={href} passHref key={displayName}>
-            <a className="text-white text-xl font-bold hover:text-blue group">
+            <a
+              className={`${
+                pathname === href ? 'text-blue' : 'text-white'
+              } text-xl font-bold hover:text-blue group`}
+            >
               <div className="p-3 my-1 flex items-center rounded-full group-hover:bg-darkblue w-fitContent transition-colors">
                 <FontAwesomeIcon icon={icon} className="text-2xl" />
                 <p className="mx-4">{displayName}</p>
