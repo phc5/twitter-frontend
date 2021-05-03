@@ -13,7 +13,8 @@ module.exports = {
       },
       colors: {
         blue: '#1DA1F2',
-        darkblue: 'rgba(29, 161, 242, 0.1)',
+        darkblue: '#2795D9',
+        darkestblue: 'rgba(29, 161, 242, 0.1)',
         lightblue: '#EFF9FF',
         dark: '#657786',
         light: '#AAB8C2',
@@ -21,7 +22,7 @@ module.exports = {
         lightest: '#F5F8FA',
       },
       width: {
-        997: '997px',
+        896: '896px',
         fitContent: 'fit-content',
       },
     },
