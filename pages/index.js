@@ -44,31 +44,18 @@ export default function Home() {
         <div className="flex items-center justify-center w-full h-full bg-red">
           <div className="flex flex-col">
             <div className="flex items-center">
-              <FontAwesomeIcon
-                icon="search"
-                className="text-white text-2xl mr-5"
-              />
-              <p className="text-white font-bold text-xl">
-                Follow your interests.
-              </p>
+              <FontAwesomeIcon icon="search" className=" text-2xl mr-5" />
+              <p className=" font-bold text-xl">Follow your interests.</p>
             </div>
             <div className="flex items-center mt-10">
-              <FontAwesomeIcon
-                icon="user-friends"
-                className="text-white text-2xl mr-5"
-              />
-              <p className="text-white font-bold text-xl">
+              <FontAwesomeIcon icon="user-friends" className=" text-2xl mr-5" />
+              <p className=" font-bold text-xl">
                 Hear what people are talking about.
               </p>
             </div>
             <div className="flex items-center mt-10">
-              <FontAwesomeIcon
-                icon="comment"
-                className="text-white text-2xl mr-5"
-              />
-              <p className="text-white font-bold text-xl">
-                Join the conversation.
-              </p>
+              <FontAwesomeIcon icon="comment" className=" text-2xl mr-5" />
+              <p className=" font-bold text-xl">Join the conversation.</p>
             </div>
           </div>
         </div>
@@ -87,7 +74,7 @@ export default function Home() {
             </p>
             <p>Join Kwitter today.</p>
             <button
-              className="rounded-full bg-blue font-bold text-lg text-white mt-4 p-3 hover:bg-darkblue focus:outline-none"
+              className="rounded-full bg-blue font-bold text-lg  mt-4 p-3 hover:bg-darkblue focus:outline-none"
               onClick={() => setIsSignUpModalOpen(!isSignUpModalOpen)}
             >
               Sign up

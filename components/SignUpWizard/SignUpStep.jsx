@@ -102,14 +102,14 @@ export default function SignUpStep({ setStep }) {
           .
         </p>
         <button
-          className={`w-full rounded-full mt-4 py-3 bg-blue text-white font-bold hover:bg-darkblue focus:outline-none ${
+          className={`w-full rounded-full mt-4 py-3 bg-blue  font-bold hover:bg-darkblue focus:outline-none ${
             (!name || !email || !birthdate) && 'opacity-50 pointer-events-none'
           }`}
           onClick={onSignUpClick}
         >
           {signUpLoading ? (
             <svg
-              className="animate-spin m-auto h-5 w-5 text-white"
+              className="animate-spin m-auto h-5 w-5 "
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"

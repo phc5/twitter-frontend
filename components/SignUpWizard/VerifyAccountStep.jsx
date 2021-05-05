@@ -35,12 +35,12 @@ export default function VerifyAccountStep({ setStep }) {
           <FontAwesomeIcon icon="arrow-left" className="text-blue" />
         </button>
         <button
-          className="rounded-full bg-blue font-bold text-white mt-2 p-1 pl-3 pr-3 relative hover:bg-darkblue focus:outline-none"
+          className="rounded-full bg-blue font-bold  mt-2 p-1 pl-3 pr-3 relative hover:bg-darkblue focus:outline-none"
           onClick={verifyUser}
         >
           {verifyLoading ? (
             <svg
-              className="animate-spin m-auto h-5 w-5 text-white"
+              className="animate-spin m-auto h-5 w-5 "
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
