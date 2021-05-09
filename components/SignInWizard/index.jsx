@@ -73,7 +73,7 @@ export default function SignInWizard() {
         </div>
 
         <button
-          className={`w-full rounded-full mt-4 py-3 bg-blue  font-bold hover:bg-darkblue focus:outline-none ${
+          className={`w-full rounded-full mt-4 py-3 bg-blue font-bold hover:bg-darkblue focus:outline-none text-white ${
             (!email || !password) && 'opacity-50 pointer-events-none'
           }`}
           onClick={signIn}

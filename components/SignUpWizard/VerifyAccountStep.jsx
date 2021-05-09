@@ -35,7 +35,7 @@ export default function VerifyAccountStep({ setStep }) {
           <FontAwesomeIcon icon="arrow-left" className="text-blue" />
         </button>
         <button
-          className="rounded-full bg-blue font-bold  mt-2 p-1 pl-3 pr-3 relative hover:bg-darkblue focus:outline-none"
+          className="rounded-full bg-blue font-bold  mt-2 p-1 pl-3 pr-3 relative hover:bg-darkblue focus:outline-none text-white"
           onClick={verifyUser}
         >
           {verifyLoading ? (

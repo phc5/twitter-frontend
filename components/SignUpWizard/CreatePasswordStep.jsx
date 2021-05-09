@@ -20,7 +20,7 @@ export default function CreatePassword({ setStep }) {
           <FontAwesomeIcon icon="arrow-left" className="text-blue" />
         </button>
         <button
-          className={`rounded-full bg-blue font-bold  mt-2 p-1 pl-3 pr-3 relative hover:bg-darkblue focus:outline-none ${
+          className={`rounded-full bg-blue font-bold  mt-2 p-1 pl-3 pr-3 relative hover:bg-darkblue focus:outline-none text-white ${
             (!password || password.length < 8) &&
             'opacity-50 pointer-events-none'
           }`}

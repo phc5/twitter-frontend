@@ -62,7 +62,7 @@ export default function Home() {
       </div>
 
       {/* right side */}
-      <div className="flex w-full h-full py-8 pl-4">
+      <div className="flex w-full h-full py-8 pl-4 text-black">
         <div className="flex items-center justify-center w-full xl:w-1/2 h-full p-3">
           <div className="flex flex-col w-3/4 font-bold p-3">
             <FontAwesomeIcon
@@ -74,7 +74,7 @@ export default function Home() {
             </p>
             <p>Join Kwitter today.</p>
             <button
-              className="rounded-full bg-blue font-bold text-lg  mt-4 p-3 hover:bg-darkblue focus:outline-none"
+              className="rounded-full bg-blue font-bold text-lg mt-4 p-3 hover:bg-darkblue focus:outline-none text-white"
               onClick={() => setIsSignUpModalOpen(!isSignUpModalOpen)}
             >
               Sign up

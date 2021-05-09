@@ -10,7 +10,7 @@ export default function SignInModal({
     <div
       className={`${
         !isSignInModalOpen && 'hidden'
-      } fixed z-10 inset-0 overflow-y-auto`}
+      } fixed z-10 inset-0 overflow-y-auto text-black`}
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"

@@ -102,7 +102,7 @@ export default function SignUpStep({ setStep }) {
           .
         </p>
         <button
-          className={`w-full rounded-full mt-4 py-3 bg-blue  font-bold hover:bg-darkblue focus:outline-none ${
+          className={`w-full rounded-full mt-4 py-3 bg-blue  font-bold hover:bg-darkblue focus:outline-none text-white ${
             (!name || !email || !birthdate) && 'opacity-50 pointer-events-none'
           }`}
           onClick={onSignUpClick}

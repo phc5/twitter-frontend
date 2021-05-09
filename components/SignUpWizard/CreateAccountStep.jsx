@@ -15,7 +15,7 @@ export default function CreateAccountStep({ setStep }) {
     <div className="px-3 mb-8">
       <div className="pl-1 py-1 mb-4 h-12">
         <button
-          className={`rounded-full bg-blue font-bold  mt-2 p-1 px-3 relative right-0 float-right hover:bg-darkblue focus:outline-none ${
+          className={`rounded-full bg-blue font-bold  mt-2 p-1 px-3 relative right-0 float-right hover:bg-darkblue focus:outline-none text-white ${
             (!name || !email || !birthdate) && 'opacity-50 pointer-events-none'
           }`}
           onClick={() => setStep(1)}
