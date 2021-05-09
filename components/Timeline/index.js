@@ -4,6 +4,7 @@ import useIntersectionObserver from '@react-hook/intersection-observer';
 import Tweet from '../Tweet';
 import Spinner from '../Spinner';
 import { getMyTimeline } from '../../lib/backend/queries';
+import { like, unlike } from '../../lib/backend/mutations';
 
 const getKey = (pageIndex, previousPageData) => {
   if (previousPageData && !previousPageData.nextToken) return null;
@@ -30,17 +31,18 @@ export default function Timeline() {
     isValidating,
   } = useSWRInfinite(getKey, (_, nextToken) => getMyTimeline(nextToken));
 
-  const isLoadingInitialData = !data && !error;
   const tweetsArray =
     Array.isArray(data) && data.map((page) => page.tweets).flat(1);
-  const isLoadingMore =
-    isLoadingInitialData ||
-    (size > 0 && data && typeof data[size - 1] === 'undefined');
   const isEnd = data && data[data.length - 1].nextToken == null;
 
   useEffect(() => {
     if (isIntersecting && !isEnd) setSize(size + 1);
   }, [isIntersecting]);
+
+  async function onLikeClick(liked, tweetId) {
+    liked ? await unlike(tweetId) : await like(tweetId);
+    mutate();
+  }
 
   if (!data) {
     return <Spinner />;
@@ -51,7 +53,9 @@ export default function Timeline() {
       tweetsArray.map((tweet) => {
         switch (tweet.__typename) {
           case 'Tweet':
-            return <Tweet {...tweet} key={tweet.id} />;
+            return (
+              <Tweet onLikeClick={onLikeClick} {...tweet} key={tweet.id} />
+            );
           default:
             return <></>;
         }

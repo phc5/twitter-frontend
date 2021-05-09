@@ -1,4 +1,9 @@
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+const up = 'inline-flex opacity-0 transform -translate-y-1';
+const down = 'inline-flex opacity-0 transform translate-y-1';
+const initial = 'inline-flex opacity-1 transform translate-y-0';
 
 export default function Tweet({
   id,
@@ -10,7 +15,12 @@ export default function Tweet({
   retweeted,
   retweetsCount,
   text,
+  onLikeClick,
 }) {
+  const [tweetLiked, setTweetLiked] = useState(liked);
+  const [tweetLikesCount, setTweetLikesCount] = useState(likesCount);
+  const [likeAnimation, setLikeAnimation] = useState(initial);
+
   return (
     <div className="flex border-borderGray border-b p-4 hover:bg-gray-500 hover:bg-opacity-10 cursor-pointer text-sm">
       <div className="mr-4">
@@ -44,12 +54,30 @@ export default function Tweet({
             {retweetsCount}
           </span>
           <span
+            onClick={(event) => {
+              event.preventDefault();
+              setTimeout(() => setLikeAnimation(tweetLiked ? down : up), 0);
+
+              setTimeout(() => {
+                setTweetLiked(!tweetLiked);
+                setTweetLikesCount(() => {
+                  return tweetLiked ? tweetLikesCount - 1 : tweetLikesCount + 1;
+                });
+              }, 100);
+              setTimeout(() => setLikeAnimation(tweetLiked ? up : down), 100);
+              setTimeout(() => setLikeAnimation(initial), 200);
+              onLikeClick(tweetLiked, id);
+            }}
             className={`${
-              liked ? 'text-blue' : 'text-lightGray'
-            } text-lightGray hover:text-red-500 cursor-pointer transition-colors`}
+              tweetLiked ? 'text-red-500' : 'text-lightGray'
+            } hover:text-red-500 cursor-pointer transition-colors`}
           >
             <FontAwesomeIcon icon="heart" className="text-sm mr-2" />
-            {likesCount}
+            <span
+              className={`${likeAnimation} ease-in-out duration-200 transition-all`}
+            >
+              {tweetLikesCount}
+            </span>
           </span>
           <span className="text-lightGray hover:text-blue cursor-pointer transition-colors">
             <FontAwesomeIcon icon="share" className="text-sm mr-2" />
