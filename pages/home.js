@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-
 import Layout from '../components/Layout';
 import Timeline from '../components/Timeline';
 import NewTweet from '../components/NewTweet';
@@ -35,7 +34,7 @@ export default function Home() {
           <Timeline />
         </div>
 
-        <div className="w-350 mr-8 flex flex-col py-2">
+        <div className="hidden lg:flex w-350 mr-8  flex-col py-2">
           <Search />
           <WhatsHappening />
           <WhoToFollow />

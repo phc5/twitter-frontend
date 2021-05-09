@@ -46,7 +46,7 @@ export default function NewTweet() {
           </div>
           <button
             type="button"
-            className={`items-center px-4 py-2 border border-transparent text-base font-semibold rounded-full bg-blue opacity-60 pointer-events-none focus:outline-none ${
+            className={`items-center px-4 py-2 border border-transparent text-sm font-bold rounded-full bg-blue opacity-60 pointer-events-none focus:outline-none ${
               tweetValue.length > 0 ? 'opacity-100 pointer-events-auto' : ''
             }`}
             onClick={onTweetClick}

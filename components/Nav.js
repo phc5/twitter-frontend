@@ -12,16 +12,28 @@ const NAVIGATION_ITEMS = [
 
 export default function Nav() {
   return (
-    <nav className="flex flex-col w-60">
+    <nav className="flex flex-col w-275 px-3">
       <Link href="/home" passHref>
         <a className="p-3">
           <FontAwesomeIcon icon="kiwi-bird" className=" text-2xl" />
         </a>
       </Link>
       <NavigationItems />
-      <div className=" text-xl p-3 my-1 mb-3 font-bold flex items-center hover:text-blue cursor-pointer">
-        <FontAwesomeIcon icon="ellipsis-h" className="text-2xl mr-4" />
-        More
+      <div className="text-xl p-2 my-2 font-bold flex items-center hover:text-blue cursor-pointer hover:bg-darkestblue w-fitContent transition-colors rounded-full">
+        <FontAwesomeIcon icon="ellipsis-h" className="text-2xl" fixedWidth />
+        <p className="hidden lg:block mx-4">More</p>
+      </div>
+      <div className="w-full lg:p-2 my-2">
+        <div className="lg:hidden rounded-full text-white bg-blue hover:bg-darkblue focus:outline-none w-12 h-12 flex items-center justify-center">
+          <FontAwesomeIcon icon="feather-alt" className="text-2xl" fixedWidth />
+        </div>
+
+        <button
+          type="button"
+          className="hidden lg:block w-full items-center p-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-blue hover:bg-darkblue focus:outline-none"
+        >
+          Tweet
+        </button>
       </div>
     </nav>
   );
@@ -40,9 +52,9 @@ function NavigationItems() {
                 pathname === href ? 'text-blue' : ''
               } text-xl font-bold hover:text-blue group`}
             >
-              <div className="p-2 my-1 flex items-center rounded-full group-hover:bg-darkestblue w-fitContent transition-colors">
-                <FontAwesomeIcon icon={icon} className="text-2xl" />
-                <p className="mx-4">{displayName}</p>
+              <div className="p-2 my-2 flex items-center rounded-full group-hover:bg-darkestblue w-fitContent transition-colors">
+                <FontAwesomeIcon icon={icon} className="text-2xl" fixedWidth />
+                <p className="hidden lg:block mx-4">{displayName}</p>
               </div>
             </a>
           </Link>

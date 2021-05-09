@@ -27,8 +27,10 @@ module.exports = {
         lightest: '#F5F8FA',
       },
       width: {
+        68: '68px',
         275: '275px',
         350: '350px',
+        600: '600px',
         990: '990px',
         fitContent: 'fit-content',
       },
