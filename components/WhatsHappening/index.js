@@ -53,8 +53,12 @@ export default function WhatsHappening() {
                 <p>{description}</p>
               </div>
             </div>
-            <div className="w-24 h-24">
-              <img draggable="true" className="rounded-xl" src={imageSrc}></img>
+            <div className="">
+              <img
+                draggable="true"
+                className="w-16 h-16 rounded-2xl object-cover"
+                src={imageSrc}
+              ></img>
             </div>
           </div>
         </div>
