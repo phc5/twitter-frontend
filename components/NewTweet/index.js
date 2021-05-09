@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { tweet } from '../../lib/backend/mutations';
 
 export default function NewTweet() {
   const [tweetValue, setTweetValue] = useState('');
+
+  async function onTweetClick(event) {
+    event.preventDefault();
+    const response = await tweet(tweetValue);
+  }
 
   return (
     <div className="flex px-4 p-2">
@@ -43,6 +49,7 @@ export default function NewTweet() {
             className={`items-center px-4 py-2 border border-transparent text-base font-semibold rounded-full bg-blue opacity-60 pointer-events-none focus:outline-none ${
               tweetValue.length > 0 ? 'opacity-100 pointer-events-auto' : ''
             }`}
+            onClick={onTweetClick}
           >
             Tweet
           </button>

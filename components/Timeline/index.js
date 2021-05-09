@@ -1,176 +1,68 @@
 import React from 'react';
-import useSWR from 'swr';
+import { useSWRInfinite } from 'swr';
 import Tweet from '../Tweet';
-import { getMyTimeline } from '../../lib/backend';
+import { getMyTimeline } from '../../lib/backend/queries';
 
-const data = {
-  tweets: [
-    {
-      id: '01F4B47T1C8EGXYNB5F4GYPNSV',
-      createdAt: '2021-04-28T02:16:59.692Z',
-      __typename: 'Reply',
-      text: 'a;lkfja;sdjfdf',
-      retweetsCount: 0,
-      retweeted: false,
-      repliesCount: 0,
-      likesCount: 0,
-      liked: false,
-    },
-    {
-      id: '01F4B418XG0A9X2Y8RP3ZDQENR',
-      createdAt: '2021-04-28T02:13:25.552Z',
-      __typename: 'Reply',
-      text: 'a;lkfja;sdjfdf',
-      retweetsCount: 0,
-      retweeted: false,
-      repliesCount: 0,
-      likesCount: 0,
-      liked: false,
-    },
-    {
-      id: '01F4B2N0ERXXXDCXV13QZ6RRRS',
-      createdAt: '2021-04-28T01:49:15.096Z',
-      __typename: 'Reply',
-      text: 'a;lkfja;sdjfdf',
-      retweetsCount: 0,
-      retweeted: false,
-      repliesCount: 0,
-      likesCount: 0,
-      liked: false,
-    },
-    {
-      id: '01F4B1VNXSTT3JYTAEYPSGVTE3',
-      createdAt: '2021-04-28T01:35:25.113Z',
-      __typename: 'Tweet',
-      text: 'asdf as @PaulR49X0PC5',
-      retweetsCount: 0,
-      retweeted: false,
-      repliesCount: 3,
-      likesCount: 0,
-      liked: false,
-      profile: {
-        imageUrl: null,
-        id: 'abadc16c-90e0-4e75-821f-209bbb02dc86',
-        username: 'PaulR49X0PC5',
-        name: 'Paul',
-      },
-    },
-    {
-      id: '01F4B1B9JEEBW1QFDWTMVRQ6P3',
-      createdAt: '2021-04-28T01:26:28.174Z',
-      __typename: 'Tweet',
-      text: 'hiii2 @PaulR49X0PC5',
-      retweetsCount: 0,
-      retweeted: false,
-      repliesCount: 0,
-      likesCount: 0,
-      liked: false,
-      profile: {
-        imageUrl: null,
-        id: 'abadc16c-90e0-4e75-821f-209bbb02dc86',
-        username: 'PaulR49X0PC5',
-        name: 'Paul',
-      },
-    },
-    {
-      id: '01F4B140DRJY1KS04YVC1EM6QF',
-      createdAt: '2021-04-28T01:22:29.432Z',
-      __typename: 'Tweet',
-      text: 'hiii2 @PaulR49X0PC5',
-      retweetsCount: 0,
-      retweeted: false,
-      repliesCount: 0,
-      likesCount: 0,
-      liked: false,
-      profile: {
-        imageUrl: null,
-        id: 'abadc16c-90e0-4e75-821f-209bbb02dc86',
-        username: 'PaulR49X0PC5',
-        name: 'Paul',
-      },
-    },
-    {
-      id: '01F4B12J7SRBHV7J0KM2JGQ2EE',
-      createdAt: '2021-04-28T01:21:42.137Z',
-      __typename: 'Tweet',
-      text: 'hiii @PaulR49X0PC5',
-      retweetsCount: 0,
-      retweeted: false,
-      repliesCount: 0,
-      likesCount: 0,
-      liked: false,
-      profile: {
-        imageUrl: null,
-        id: 'abadc16c-90e0-4e75-821f-209bbb02dc86',
-        username: 'PaulR49X0PC5',
-        name: 'Paul',
-      },
-    },
-    {
-      id: '01F4AZ4TTQ8PHPYSVKJD6KMYHC',
-      createdAt: '2021-04-28T00:47:59.319Z',
-      __typename: 'Tweet',
-      text: 'hiii @PaulR49X0PC5',
-      retweetsCount: 0,
-      retweeted: false,
-      repliesCount: 0,
-      likesCount: 0,
-      liked: false,
-      profile: {
-        imageUrl: null,
-        id: 'abadc16c-90e0-4e75-821f-209bbb02dc86',
-        username: 'PaulR49X0PC5',
-        name: 'Paul',
-      },
-    },
-    {
-      id: '01F4AZ2MSFH0ZVM9QER06RNN6Q',
-      createdAt: '2021-04-28T00:46:47.599Z',
-      __typename: 'Tweet',
-      text: 'hiii @PaulR49X0PC5',
-      retweetsCount: 0,
-      retweeted: false,
-      repliesCount: 0,
-      likesCount: 0,
-      liked: false,
-      profile: {
-        imageUrl: null,
-        id: 'abadc16c-90e0-4e75-821f-209bbb02dc86',
-        username: 'PaulR49X0PC5',
-        name: 'Paul',
-      },
-    },
-    {
-      id: '01F4AZ1V4JNAPQ7HAGZ41K1404',
-      createdAt: '2021-04-28T00:46:21.330Z',
-      __typename: 'Tweet',
-      text: 'hi @PaulR49X0PC5',
-      retweetsCount: 0,
-      retweeted: false,
-      repliesCount: 0,
-      likesCount: 0,
-      liked: false,
-      profile: {
-        imageUrl: null,
-        id: 'abadc16c-90e0-4e75-821f-209bbb02dc86',
-        username: 'PaulR49X0PC5',
-        name: 'Paul',
-      },
-    },
-  ],
-  nextToken:
-    'eyJ2ZXJzaW9uIjoyLCJ0b2tlbiI6IkFRSUNBSGdrUU45cHVuT1Y5bGVaV2l1QkFJMXcxVUZHemErVENzSVpuckw4S1IzQzJRRkVXVTNGaEhKNHNoWE53SHBvaER6eUFBQUMzakNDQXRvR0NTcUdTSWIzRFFFSEJxQ0NBc3N3Z2dMSEFnRUFNSUlDd0FZSktvWklodmNOQVFjQk1CNEdDV0NHU0FGbEF3UUJMakFSQkF6emVHWDBZMStFVG1BYy9qa0NBUkNBZ2dLUlBJNDdpZG14UnlNajJrTlg4QUtxKzhySzNWUGdKcFFINUNLNDZ2cFFCYjlNUjlzemMvTzFrL3RHRWdrYkpiSENpYUtWQTBLdXljLyt4R0g1TVZHdWZrZ0Y3NmZhNEJVUkd1WURYUmVOUmY1VmRRb3V4a0lkTFRKNWVpTkF3ZkFzaHltZ3B6K0ZjZ2QvZVZLQzRlNDVJcEFBNldEcTI3L3hvbk1XRlRiTkdnT24rOFdGY096Ly92Qmwxc0lNVjVJdUFBNkhYWEtodmZXMU1zM2N6WjZ5OFNjWUVEa1hQMVlGdkNTNXRWVVpDeVFuOEtrNzIxT2NDTHlUcnM4cGlxd245dFF4blNJU0VvaGQ4T3h4V3NHZytxNXpkTGdFcUZCN1FZcTdnSFZOMU1FV05yaHp4aHYxSnptVWgwSXJocjNXNm5jeHNtYVp3MFRiQ1ZDRVpKbi9McUpkWVJCcHQxNkVDNzRpZ0J0UUpaWEdrSEY4S2U3a3UrRzBVMUEvYjEwRVZTem9qcllVSzJuLy81RTZtZyt0T2p0eDhDUXcvS3ZCK1I2Yk5jNitzaVpPZ3gzc0x3WVNKd2c4VVlRUWtQY1k2OENMQlFFUjY4OTkrVkRCWFJ5dldQaXZrYVZIRG5OR1lGSHlEN3B6OGhXb0E1OGpLUzM5NSs5enpzSSt4azdqWjE3NHBTVFkvTkFMOEtSbEdpMXhqODVXWElPeGlTWE84dWVWVVVjdTlkSlZVUmRtdGdmTE9KSE1GeWFtUWI3T0hvLzhld1Myd0w2eGlKZGU4dXpzSHo3ekpyRHlieHlKb3RXOHRRaTlWd2ZmS0dhMk9XbzZBVTRSSDBWM2g2QlYwaG9mV2FZV1JYV2ZWKy9vSEhLdTUyRGg0NWd0TWRocnRINzBkMnRDZ2hXQ1Z1emEzMTJ5TDBjdWo1ejUydVZyaDZHOVN2dkZrU3A3SExQREJPMEt0RFFhRzZqVklsY3hEcUlrakpDaEY0cW9sclBJTXhvSG9GaVN3alJpQUhRWDZ0ZHRYYTBoYTQ0b2lHTVUvTzlBVU9MQzZCL2daS21VZTlWYyt2T3N4YTJBSTliZm5MNGx4aTYwRWRWYm9OMHJXamIxR08zVTdRMEliODViMCtxejVzaW9uOHhMV2pLWVBGMHhveFEwZ1FoZCJ9',
+const getKey = (pageIndex, previousPageData) => {
+  if (previousPageData && !previousPageData.nextToken) return null;
+
+  if (pageIndex === 0) return [`getMyTimeline`, null];
+
+  return [
+    `getMyTimeline${previousPageData.nextToken}`,
+    previousPageData.nextToken,
+  ];
 };
 
 export default function Timeline() {
-  // const { data, error } = useSWR('getMyTimeline', () => getMyTimeline());
+  const {
+    data,
+    error,
+    mutate,
+    size,
+    setSize,
+    isValidating,
+  } = useSWRInfinite(getKey, (_, nextToken) => getMyTimeline(nextToken));
+
   if (!data) {
-    <div>spinner</div>;
+    return (
+      <div className="flex items-center justify-center h-20">
+        <svg
+          className="animate-spin -ml-1 mr-3 h-5 w-5 text-blue"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          ></circle>
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          ></path>
+        </svg>
+      </div>
+    );
   }
 
+  console.log(data);
+
+  const isLoadingInitialData = !data && !error;
+  const tweetsArray = data.map((page) => page.tweets).flat(1);
+  const isLoadingMore =
+    isLoadingInitialData ||
+    (size > 0 && data && typeof data[size - 1] === 'undefined');
+  const isEnd = data[data.length - 1].nextToken == null;
+
   const tweets =
-    data.tweets.length > 0 ? (
-      data.tweets.map((tweet) => {
+    tweetsArray.length > 0 ? (
+      tweetsArray.map((tweet) => {
         switch (tweet.__typename) {
           case 'Tweet':
             return <Tweet {...tweet} key={tweet.id} />;
@@ -179,8 +71,31 @@ export default function Timeline() {
         }
       })
     ) : (
-      <p>No Tweets</p>
+      <div className="flex flex-col justify-center">
+        <h3 className="font-bold text-xl m-4 mt-6">No Tweets yet?</h3>
+        <p className="text-lightGray text-sm w-7/12 mb-4">
+          This empty timeline won't be around for long. Start following people
+          and you'll see Tweets show up here.
+        </p>
+        <div>
+          <button
+            type="button"
+            className="items-center px-4 py-2 border border-transparent text-sm font-semibold rounded-full bg-blue focus:outline-none"
+          >
+            Find people to follow
+          </button>
+        </div>
+      </div>
     );
 
-  return <>{tweets}</>;
+  return (
+    <>
+      {tweets}{' '}
+      {!isEnd && (
+        <button disabled={isLoadingMore} onClick={() => setSize(size + 1)}>
+          Load more
+        </button>
+      )}
+    </>
+  );
 }

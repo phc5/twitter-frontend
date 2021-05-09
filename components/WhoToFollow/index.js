@@ -17,6 +17,7 @@ export default function WhoToFollow() {
 
       {whoToFollow.map(({ name, handle, imageSrc }, index) => (
         <div
+          key={handle}
           className={`${
             index < whoToFollow.length - 1 ? 'border-b border-borderGray' : ''
           } px-4 py-3 tracking-normal leading-tight font-semibold text-sm flex justify-between items-center`}

@@ -35,6 +35,7 @@ export default function WhatsHappening() {
 
       {whatsHappening.map(({ time, type, imageSrc, description }, index) => (
         <div
+          key={imageSrc}
           className={`${
             index < whatsHappening.length - 1
               ? 'border-b border-borderGray'
