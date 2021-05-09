@@ -16,10 +16,15 @@ export default function Tweet({
   retweetsCount,
   text,
   onLikeClick,
+  onRetweetClick,
 }) {
   const [tweetLiked, setTweetLiked] = useState(liked);
   const [tweetLikesCount, setTweetLikesCount] = useState(likesCount);
   const [likeAnimation, setLikeAnimation] = useState(initial);
+
+  const [tweetRetweeted, setTweetRetweeted] = useState(retweeted);
+  const [tweetRetweetedCount, setTweetRetweetedCount] = useState(retweetsCount);
+  const [retweetAnimation, setRetweetAnimation] = useState(initial);
 
   return (
     <div className="flex border-borderGray border-b p-4 hover:bg-gray-500 hover:bg-opacity-10 cursor-pointer text-sm">
@@ -46,12 +51,38 @@ export default function Tweet({
             {repliesCount}
           </span>
           <span
+            onClick={(event) => {
+              event.preventDefault();
+              setTimeout(
+                () => setRetweetAnimation(tweetRetweeted ? down : up),
+                0
+              );
+
+              setTimeout(() => {
+                setTweetRetweeted(!tweetRetweeted);
+                setTweetRetweetedCount(() => {
+                  return tweetRetweeted
+                    ? tweetRetweetedCount - 1
+                    : tweetRetweetedCount + 1;
+                });
+              }, 100);
+              setTimeout(
+                () => setRetweetAnimation(tweetRetweeted ? up : down),
+                100
+              );
+              setTimeout(() => setRetweetAnimation(initial), 200);
+              onRetweetClick(tweetRetweeted, id);
+            }}
             className={`${
-              retweeted ? 'text-green-500' : 'text-lightGray'
+              tweetRetweeted ? 'text-green-500' : 'text-lightGray'
             } hover:text-green-500 cursor-pointer transition-colors`}
           >
             <FontAwesomeIcon icon="retweet" className="text-sm mr-2" />
-            {retweetsCount}
+            <span
+              className={`${retweetAnimation} ease-in-out duration-200 transition-all`}
+            >
+              {tweetRetweetedCount}
+            </span>
           </span>
           <span
             onClick={(event) => {

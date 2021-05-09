@@ -4,7 +4,7 @@ import useIntersectionObserver from '@react-hook/intersection-observer';
 import Tweet from '../Tweet';
 import Spinner from '../Spinner';
 import { getMyTimeline } from '../../lib/backend/queries';
-import { like, unlike } from '../../lib/backend/mutations';
+import { like, retweet, unlike, unretweet } from '../../lib/backend/mutations';
 
 const getKey = (pageIndex, previousPageData) => {
   if (previousPageData && !previousPageData.nextToken) return null;
@@ -44,6 +44,11 @@ export default function Timeline() {
     mutate();
   }
 
+  async function onRetweetClick(retweeted, tweetId) {
+    retweeted ? await unretweet(tweetId) : await retweet(tweetId);
+    mutate();
+  }
+
   if (!data) {
     return <Spinner />;
   }
@@ -54,7 +59,12 @@ export default function Timeline() {
         switch (tweet.__typename) {
           case 'Tweet':
             return (
-              <Tweet onLikeClick={onLikeClick} {...tweet} key={tweet.id} />
+              <Tweet
+                onLikeClick={onLikeClick}
+                onRetweetClick={onRetweetClick}
+                {...tweet}
+                key={tweet.id}
+              />
             );
           default:
             return <></>;
