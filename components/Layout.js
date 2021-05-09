@@ -17,7 +17,7 @@ export default function Layout({ children }) {
               </button>
             </div>
           </div>
-          <div className="fixed bottom-0 w-275 mb-4 px-4 py-3 tracking-normal leading-tight font-semibold text-sm flex justify-between items-center">
+          <div className="bg-black fixed bottom-0 w-275 px-4 py-3 tracking-normal leading-tight font-semibold text-sm flex justify-between items-center">
             <div className="flex items-center">
               <div>
                 <img

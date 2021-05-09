@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSWRInfinite } from 'swr';
+import useIntersectionObserver from '@react-hook/intersection-observer';
 import Tweet from '../Tweet';
+import Spinner from '../Spinner';
 import { getMyTimeline } from '../../lib/backend/queries';
 
 const getKey = (pageIndex, previousPageData) => {
@@ -15,6 +17,10 @@ const getKey = (pageIndex, previousPageData) => {
 };
 
 export default function Timeline() {
+  const [ref, setRef] = useState();
+  const { isIntersecting } = useIntersectionObserver(ref, {
+    rootMargin: '0% 0% 25% 0%',
+  });
   const {
     data,
     error,
@@ -24,41 +30,21 @@ export default function Timeline() {
     isValidating,
   } = useSWRInfinite(getKey, (_, nextToken) => getMyTimeline(nextToken));
 
-  if (!data) {
-    return (
-      <div className="flex items-center justify-center h-20">
-        <svg
-          className="animate-spin -ml-1 mr-3 h-5 w-5 text-blue"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            className="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            strokeWidth="4"
-          ></circle>
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          ></path>
-        </svg>
-      </div>
-    );
-  }
-
-  console.log(data);
-
   const isLoadingInitialData = !data && !error;
-  const tweetsArray = data.map((page) => page.tweets).flat(1);
+  const tweetsArray =
+    Array.isArray(data) && data.map((page) => page.tweets).flat(1);
   const isLoadingMore =
     isLoadingInitialData ||
     (size > 0 && data && typeof data[size - 1] === 'undefined');
-  const isEnd = data[data.length - 1].nextToken == null;
+  const isEnd = data && data[data.length - 1].nextToken == null;
+
+  useEffect(() => {
+    if (isIntersecting && !isEnd) setSize(size + 1);
+  }, [isIntersecting]);
+
+  if (!data) {
+    return <Spinner />;
+  }
 
   const tweets =
     tweetsArray.length > 0 ? (
@@ -90,11 +76,11 @@ export default function Timeline() {
 
   return (
     <>
-      {tweets}{' '}
+      {tweets}
       {!isEnd && (
-        <button disabled={isLoadingMore} onClick={() => setSize(size + 1)}>
-          Load more
-        </button>
+        <div ref={setRef}>
+          <Spinner />
+        </div>
       )}
     </>
   );
