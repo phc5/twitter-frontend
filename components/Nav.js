@@ -24,11 +24,11 @@ export default function Nav() {
         </a>
       </Link>
       <NavigationItems />
-      <div className="text-xl p-2 my-2 font-bold flex items-center hover:text-blue cursor-pointer hover:bg-darkestblue w-fitContent transition-colors rounded-full">
+      <div className="text-xl p-2 my-1 font-bold flex items-center hover:text-blue cursor-pointer hover:bg-darkestblue w-fitContent transition-colors rounded-full">
         <FontAwesomeIcon icon="ellipsis-h" className="text-2xl" fixedWidth />
         <p className="hidden lg:block mx-4">More</p>
       </div>
-      <div className="w-full lg:p-2 my-2">
+      <div className="w-full lg:p-2">
         <div className="lg:hidden rounded-full text-white bg-blue hover:bg-darkblue focus:outline-none w-12 h-12 flex items-center justify-center">
           <FontAwesomeIcon icon="feather-alt" className="text-2xl" fixedWidth />
         </div>
@@ -58,7 +58,7 @@ function NavigationItems() {
                 pathname === href ? 'text-blue' : ''
               } text-xl font-bold hover:text-blue group`}
             >
-              <div className="p-2 my-2 flex items-center rounded-full group-hover:bg-darkestblue w-fitContent transition-colors">
+              <div className="p-2 my-1 flex items-center rounded-full group-hover:bg-darkestblue w-fitContent transition-colors">
                 <FontAwesomeIcon icon={icon} className="text-2xl" fixedWidth />
                 <p className="hidden lg:block mx-4">{displayName}</p>
               </div>
