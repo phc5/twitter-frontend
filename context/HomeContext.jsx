@@ -1,22 +1,19 @@
 import { createContext, useState } from 'react';
 
-export const AppContext = createContext(null);
+export const HomeContext = createContext(null);
 
-export const AppProvider = ({ children }) => {
-  const [loading, setLoading] = useState(true);
+export const HomeProvider = ({ children }) => {
   const [isTweetModalOpen, setIsTweetModalOpen] = useState(false);
 
   return (
-    <AppContext.Provider
+    <HomeContext.Provider
       value={{
         // state
-        loading,
-        setLoading,
         isTweetModalOpen,
         setIsTweetModalOpen,
       }}
     >
       {children}
-    </AppContext.Provider>
+    </HomeContext.Provider>
   );
 };

@@ -1,6 +1,9 @@
+import React, { useContext } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { HomeContext } from '../context/HomeContext';
 
 const NAVIGATION_ITEMS = [
   { displayName: 'Home', href: '/home', icon: 'home' },
@@ -11,6 +14,8 @@ const NAVIGATION_ITEMS = [
 ];
 
 export default function Nav() {
+  const { setIsTweetModalOpen } = useContext(HomeContext);
+
   return (
     <nav className="flex flex-col w-275 px-3">
       <Link href="/home" passHref>
@@ -29,6 +34,7 @@ export default function Nav() {
         </div>
 
         <button
+          onClick={() => setIsTweetModalOpen(true)}
           type="button"
           className="hidden lg:block w-full items-center p-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-blue hover:bg-darkblue focus:outline-none"
         >

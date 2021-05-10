@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import TextareaAutosize from 'react-textarea-autosize';
 import { tweet } from '../../lib/backend/mutations';
+import CharacterCountCircle from '../ProgressBar';
 
-export default function NewTweet() {
+export default function NewTweet({ isModal }) {
   const [tweetValue, setTweetValue] = useState('');
 
   async function onTweetClick(event) {
     event.preventDefault();
-    const response = await tweet(tweetValue);
+    await tweet(tweetValue);
   }
 
   return (
@@ -20,17 +22,19 @@ export default function NewTweet() {
         <label htmlFor="tweet" className="sr-only">
           Tweet
         </label>
-        <input
-          type="text"
-          name="tweet"
-          id="tweet"
-          className="block w-full text-xl bg-black outline-none mb-4 placeholder-lightGray"
-          placeholder="What's happening?"
-          value={tweetValue}
-          onChange={(event) => setTweetValue(event.target.value)}
-        />
+        <div className={`max-h-96 ${isModal ? 'min-h-120px' : 'min-h-60px'}`}>
+          <TextareaAutosize
+            maxLength={180}
+            name="tweet"
+            id="tweet"
+            className="block w-full text-xl bg-black outline-none mb-4 placeholder-lightGray resize-none"
+            placeholder="What's happening?"
+            value={tweetValue}
+            onChange={(event) => setTweetValue(event.target.value)}
+          />
+        </div>
         <div className="flex justify-between items-center">
-          <div className="flex">
+          <div className="flex flex-grow">
             <div className="flex w-10 h-10 items-center justify-center text-blue cursor-pointer hover:bg-darkestblue rounded-full -ml-2">
               <FontAwesomeIcon icon="image" className="text-lg" />
             </div>
@@ -44,15 +48,21 @@ export default function NewTweet() {
               <FontAwesomeIcon icon="calendar" className="text-lg" />
             </div>
           </div>
-          <button
-            type="button"
-            className={`items-center px-4 py-2 border border-transparent text-sm font-bold rounded-full bg-blue opacity-60 pointer-events-none focus:outline-none ${
-              tweetValue.length > 0 ? 'opacity-100 pointer-events-auto' : ''
-            }`}
-            onClick={onTweetClick}
-          >
-            Tweet
-          </button>
+          <div className="flex flex-grow justify-end items-center">
+            <div className="mr-4">
+              <CharacterCountCircle characterCount={tweetValue.length} />
+            </div>
+
+            <button
+              type="button"
+              className={`items-center h-10 px-4 py-2 border border-transparent text-sm font-bold rounded-full bg-blue opacity-60 pointer-events-none focus:outline-none ${
+                tweetValue.length > 0 ? 'opacity-100 pointer-events-auto' : ''
+              }`}
+              onClick={onTweetClick}
+            >
+              Tweet
+            </button>
+          </div>
         </div>
       </div>
     </div>
