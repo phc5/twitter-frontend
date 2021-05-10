@@ -29,7 +29,10 @@ export default function Nav() {
         <p className="hidden lg:block mx-4">More</p>
       </div>
       <div className="w-full lg:p-2">
-        <div className="lg:hidden rounded-full text-white bg-blue hover:bg-darkblue focus:outline-none w-12 h-12 flex items-center justify-center">
+        <div
+          className="lg:hidden rounded-full text-white bg-blue hover:bg-darkblue cursor-pointer focus:outline-none w-12 h-12 flex items-center justify-center"
+          onClick={() => setIsTweetModalOpen(true)}
+        >
           <FontAwesomeIcon icon="feather-alt" className="text-2xl" fixedWidth />
         </div>
 

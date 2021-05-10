@@ -42,7 +42,7 @@ export default function TweetModal() {
 
         {/* modal content */}
         <Transition
-          className="inline-block align-bottom bg-black rounded-lg pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+          className="absolute top-0 left-1/2 -translate-x-2/4 translate-y-2/4 align-bottom bg-black rounded-lg pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
           show={isTweetModalOpen}
           enter="ease-out duration-300"
           enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
