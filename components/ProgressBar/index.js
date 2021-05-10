@@ -23,11 +23,11 @@ export default function CharacterCountCircle({ characterCount }) {
   }, [setOffset, progress, circumference, offset]);
 
   return (
-    <>
+    <div className="relative flex items-center justify-center text-center">
       <svg
         className={`${
           characterCount > 0 ? 'block' : 'hidden'
-        }text-light transform duration-200 ease-in-out ${
+        }text-light transform duration-200 ease-in-out -rotate-90 ${
           isNearEnd ? 'scale-125' : 'scale-100'
         }`}
         width={SIZE}
@@ -51,14 +51,10 @@ export default function CharacterCountCircle({ characterCount }) {
           strokeDasharray={circumference}
           strokeDashoffset={offset}
         />
-        <text
-          x={center - 4}
-          y={center + 4}
-          className="text-xs font-light fill-current scale-100"
-        >
-          {isNearEnd ? 180 - characterCount : ''}
-        </text>
       </svg>
-    </>
+      <p className="absolute text-sm text-lightGray">
+        {isNearEnd ? 180 - characterCount : ''}
+      </p>
+    </div>
   );
 }
