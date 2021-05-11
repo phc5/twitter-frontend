@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { HomeContext } from '../context/HomeContext';
+import { NavContext } from '../context/NavContext';
 
 const NAVIGATION_ITEMS = [
   { displayName: 'Home', href: '/home', icon: 'home' },
@@ -14,7 +14,7 @@ const NAVIGATION_ITEMS = [
 ];
 
 export default function Nav() {
-  const { setIsTweetModalOpen } = useContext(HomeContext);
+  const { setIsTweetModalOpen } = useContext(NavContext);
 
   return (
     <nav className="flex flex-col w-275 px-3">

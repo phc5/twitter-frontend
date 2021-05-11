@@ -1,12 +1,12 @@
 import { createContext, useState } from 'react';
 
-export const HomeContext = createContext(null);
+export const NavContext = createContext(null);
 
-export const HomeProvider = ({ children }) => {
+export const NavProvider = ({ children }) => {
   const [isTweetModalOpen, setIsTweetModalOpen] = useState(false);
 
   return (
-    <HomeContext.Provider
+    <NavContext.Provider
       value={{
         // state
         isTweetModalOpen,
@@ -14,6 +14,6 @@ export const HomeProvider = ({ children }) => {
       }}
     >
       {children}
-    </HomeContext.Provider>
+    </NavContext.Provider>
   );
 };

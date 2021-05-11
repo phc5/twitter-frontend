@@ -7,11 +7,9 @@ import NewTweet from '../components/NewTweet';
 import Search from '../components/Search';
 import WhoToFollow from '../components/WhoToFollow';
 import WhatsHappening from '../components/WhatsHappening';
-import TweetModal from '../components/TweetModal';
 import Footer from '../components/Footer';
 
 import { AuthContext } from '../context/AuthContext';
-import { HomeProvider } from '../context/HomeContext';
 
 export default function Home() {
   const { user } = useContext(AuthContext);
@@ -27,27 +25,24 @@ export default function Home() {
   }
 
   return (
-    <HomeProvider>
-      <Layout>
-        <div className="border-r border-borderGray w-full max-w-600px">
-          <div className="border-b border-borderGray px-4 py-3 sticky top-0 bg-black z-20">
-            <h1 className="text-xl font-extrabold">Home</h1>
-          </div>
-          <NewTweet />
-          <div className="h-3 w-full border-t border-b border-borderGray bg-lightGray bg-opacity-20"></div>
-          <Timeline />
+    <Layout>
+      <div className="border-r border-borderGray w-full max-w-600px">
+        <div className="border-b border-borderGray px-4 py-3 sticky top-0 bg-black z-20">
+          <h1 className="text-xl font-extrabold">Home</h1>
         </div>
+        <NewTweet />
+        <div className="h-3 w-full border-t border-b border-borderGray bg-lightGray bg-opacity-20"></div>
+        <Timeline />
+      </div>
 
-        <div className="hidden lg:flex w-350 mr-3 flex-col py-2">
-          <Search />
-          <div className="sticky top-0">
-            <WhatsHappening />
-            <WhoToFollow />
-            <Footer />
-          </div>
+      <div className="hidden lg:flex w-350 mr-3 flex-col py-2">
+        <Search />
+        <div className="sticky top-0">
+          <WhatsHappening />
+          <WhoToFollow />
+          <Footer />
         </div>
-        <TweetModal />
-      </Layout>
-    </HomeProvider>
+      </div>
+    </Layout>
   );
 }
