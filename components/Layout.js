@@ -11,13 +11,13 @@ export default function Layout({ children }) {
               <Nav />
             </div>
           </div>
-          <div className="bg-black fixed bottom-0 w-68 lg:w-275 px-4 py-3 tracking-normal leading-tight font-semibold text-sm flex justify-between items-center">
-            <div className="flex items-center px-3 py-2">
+          <div className="bg-black fixed bottom-0 w-68 lg:w-275 px-4 py-4 flex justify-between items-center">
+            <div className="flex items-center px-3 py-2 tracking-tight leading-tight font-semibold text-base">
               <div>
                 <img
                   alt=""
                   draggable="true"
-                  className="rounded-full lg:w-12 lg:h-12 mr-2"
+                  className="rounded-full lg:w-10 lg:h-10 mr-3"
                   src="/paulhyunchong.jpeg"
                 />
               </div>
@@ -28,7 +28,7 @@ export default function Layout({ children }) {
             </div>
             <FontAwesomeIcon
               icon="ellipsis-h"
-              className="text-sm mr-4 mt-1 focus:outline-none hidden lg:block"
+              className="text-sm mr-2 mt-1 focus:outline-none hidden lg:block"
             />
           </div>
         </header>
