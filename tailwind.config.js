@@ -26,6 +26,9 @@ module.exports = {
         lighter: '#E1E8ED',
         lightest: '#F5F8FA',
       },
+      maxWidth: {
+        '600px': '600px',
+      },
       minHeight: {
         '60px': '60px',
         '120px': '120px',

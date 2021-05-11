@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Layout from '../components/Layout';
 import Timeline from '../components/Timeline';
@@ -28,7 +29,7 @@ export default function Home() {
   return (
     <HomeProvider>
       <Layout>
-        <div className="max-w-xl border-r border-borderGray w-full">
+        <div className="border-r border-borderGray w-full max-w-600px">
           <div className="border-b border-borderGray px-4 py-3 sticky top-0 bg-black z-20">
             <h1 className="text-xl font-extrabold">Home</h1>
           </div>
@@ -37,10 +38,27 @@ export default function Home() {
           <Timeline />
         </div>
 
-        <div className="hidden lg:flex w-350 mr-8  flex-col py-2">
+        <div className="hidden lg:flex w-350 mr-3 flex-col py-2">
           <Search />
-          <WhatsHappening />
-          <WhoToFollow />
+          <div className="sticky top-0">
+            <WhatsHappening />
+            <WhoToFollow />
+            <div className="text-sm text-lightGray flex flex-wrap p-4">
+              <span className="mr-2">Terms of Service</span>
+              <span className="mr-2">Privacy Policy</span>
+              <span className="mr-2">Cookie Policy</span>
+              <span className="mr-2">Cookie Policy</span>
+              <span className="mr-2">
+                More{' '}
+                <FontAwesomeIcon
+                  icon="ellipsis-h"
+                  className="text-xs"
+                  fixedWidth
+                />
+              </span>
+              <span className="mr-2">© 2021 Kwitter, Inc.</span>
+            </div>
+          </div>
         </div>
         <TweetModal />
       </Layout>

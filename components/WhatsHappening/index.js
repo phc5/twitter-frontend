@@ -40,7 +40,7 @@ export default function WhatsHappening() {
             index < whatsHappening.length - 1
               ? 'border-b border-borderGray'
               : ''
-          } px-4 py-3 tracking-normal leading-tight font-semibold text-sm`}
+          } px-4 py-3 tracking-normal leading-snug font-bold text-sm`}
         >
           <div className="flex">
             <div className="flex-1 mr-3">
