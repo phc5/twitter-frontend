@@ -6,7 +6,7 @@ import CreatePasswordStep from './CreatePasswordStep';
 import SignUpStep from './SignUpStep';
 import VerifyAccountStep from './VerifyAccountStep';
 
-import { SignUpProvider } from '../../context/SignUpContext';
+import { SignUpProvider } from '../../../context/SignUpContext';
 
 export default function SignUpWizard() {
   const [step, setStep] = useState(0);

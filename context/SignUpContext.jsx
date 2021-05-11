@@ -2,6 +2,7 @@ import { createContext, useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { Auth } from 'aws-amplify';
 import { AuthContext } from './AuthContext';
+import {ROUTES} from '../lib/constants';
 
 export const SignUpContext = createContext(null);
 
@@ -66,7 +67,7 @@ export const SignUpProvider = ({ children }) => {
       await Auth.confirmSignUp(email, verificationCode);
       const user = await Auth.signIn(email, password);
       setUser(user);
-      router.push('/home');
+      router.push(ROUTES.HOME);
       setVerifyLoading(false);
     } catch (error) {
       setVerifyLoading(false);

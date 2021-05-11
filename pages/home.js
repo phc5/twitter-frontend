@@ -2,9 +2,9 @@ import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import Layout from '../components/Layout';
-import Timeline from '../components/Timeline';
-import NewTweet from '../components/NewTweet';
-import RightNav from '../components/RightNav';
+import RightNav from '../components/shared/Layout/RightNav';
+import Timeline from '../components/home/Timeline';
+import NewTweet from '../components/shared/NewTweet';
 
 import { AuthContext } from '../context/AuthContext';
 

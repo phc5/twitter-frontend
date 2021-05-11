@@ -2,7 +2,8 @@ import { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Auth } from 'aws-amplify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../../../context/AuthContext';
+import { ROUTES } from '../../../lib/constants';
 
 export default function SignInWizard() {
   const router = useRouter();
@@ -19,7 +20,7 @@ export default function SignInWizard() {
       setSignInLoading(true);
       const user = await Auth.signIn(email, password);
       setUser(user);
-      router.push('/home');
+      router.push(ROUTES.HOME);
       setSignInLoading(false);
     } catch (error) {
       setSignInLoading(false);

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TextareaAutosize from 'react-textarea-autosize';
-import { tweet } from '../../lib/backend/mutations';
+import { tweet } from '../../../lib/backend/mutations';
 import CharacterCountCircle from '../CharacterCountCircle';
 
 export default function NewTweet({ isModal }) {

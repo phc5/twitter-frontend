@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { SignUpContext } from '../../context/SignUpContext';
+import { SignUpContext } from '../../../context/SignUpContext';
 
 export default function CreateAccountStep({ setStep }) {
   const {

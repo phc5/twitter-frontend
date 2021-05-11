@@ -1,9 +1,13 @@
+import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Nav from './Nav';
+import Nav from './shared/Layout/Nav';
+import TweetModal from './shared/TweetModal';
 import { NavProvider } from '../context/NavContext';
-import TweetModal from './TweetModal';
+import { AppContext } from '../context/AppContext';
 
 export default function Layout({ children }) {
+  const { getMyProfileData } = useContext(AppContext);
+
   return (
     <NavProvider>
       <div className="h-screen overflow-hidden bg-black flex flex-col ">
@@ -14,26 +18,30 @@ export default function Layout({ children }) {
                 <Nav />
               </div>
             </div>
-            <div className="bg-black fixed bottom-0 w-68 lg:w-275 px-4 py-4 flex justify-between items-center">
-              <div className="flex items-center px-3 py-2 tracking-tight leading-tight font-semibold text-base">
-                <div>
-                  <img
-                    alt=""
-                    draggable="true"
-                    className="rounded-full lg:w-10 lg:h-10 mr-3"
-                    src="/paulhyunchong.jpeg"
-                  />
+            {getMyProfileData && (
+              <div className="bg-black fixed bottom-0 w-68 lg:w-275 px-4 py-4 flex justify-between items-center">
+                <div className="flex items-center px-3 py-2 tracking-tight leading-tight font-semibold text-base">
+                  <div>
+                    <img
+                      alt=""
+                      draggable="true"
+                      className="rounded-full lg:w-10 lg:h-10 mr-3"
+                      src="/paulhyunchong.jpeg"
+                    />
+                  </div>
+                  <div className="hidden lg:block">
+                    <p>{getMyProfileData.name}</p>
+                    <p className="text-lightGray font-normal w-36 overflow-ellipsis whitespace-nowrap overflow-hidden">
+                      {getMyProfileData.username}
+                    </p>
+                  </div>
                 </div>
-                <div className="hidden lg:block">
-                  <p>Paul Chong</p>
-                  <p className="text-lightGray font-normal">@paulhyunchong</p>
-                </div>
+                <FontAwesomeIcon
+                  icon="ellipsis-h"
+                  className="text-sm mr-2 mt-1 focus:outline-none hidden lg:block"
+                />
               </div>
-              <FontAwesomeIcon
-                icon="ellipsis-h"
-                className="text-sm mr-2 mt-1 focus:outline-none hidden lg:block"
-              />
-            </div>
+            )}
           </header>
 
           <main className="flex-grow flex-shrink items-start overflow-y-scroll">

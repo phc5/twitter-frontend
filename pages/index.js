@@ -3,10 +3,11 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Auth } from 'aws-amplify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import SignUpModal from '../components/SignUpModal';
-import SignInModal from '../components/SignInModal';
+import SignUpModal from '../components/auth/SignUpModal';
+import SignInModal from '../components/auth/SignInModal';
 import { AuthContext } from '../context/AuthContext';
 import { AppContext } from '../context/AppContext';
+import { ROUTES } from '../lib/constants';
 
 export default function Home() {
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
@@ -20,7 +21,7 @@ export default function Home() {
       try {
         const user = await Auth.currentAuthenticatedUser();
         setUser(user);
-        router.push('/home');
+        router.push(ROUTES.HOME);
       } catch (error) {
         setLoading(false);
       }
@@ -40,7 +41,7 @@ export default function Home() {
       </Head>
 
       {/* left side */}
-      <div className="flex w-full h-full bg-blue p-8">
+      <div className="flex w-full h-full bg-blue p-8 text-gray-50">
         <div className="flex items-center justify-center w-full h-full bg-red">
           <div className="flex flex-col">
             <div className="flex items-center">
@@ -69,7 +70,7 @@ export default function Home() {
               icon="kiwi-bird"
               className="text-blue text-2xl mr-5 mb-4"
             />
-            <p className="text-3xl mb-12 font-bold">
+            <p className="text-3xl mb-12 font-bold w">
               See what's happening in the world right now
             </p>
             <p>Join Kwitter today.</p>

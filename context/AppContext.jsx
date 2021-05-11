@@ -23,9 +23,9 @@ export const AppProvider = ({ children }) => {
         isTweetModalOpen,
         setIsTweetModalOpen,
         getMyProfileData: data,
-        // getMyProfileError: error,
-        // getMyProfileIsValidating: isValidating,
-        // getMyProfileMutate: mutate,
+        getMyProfileError: error,
+        getMyProfileIsValidating: isValidating,
+        getMyProfileMutate: mutate,
       }}
     >
       {children}

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Spinner from '../../Spinner';
+import Spinner from '../../shared/Spinner';
 import { AppContext } from '../../../context/AppContext';
 
 export default function ProfileHeader() {

@@ -3,22 +3,15 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { NavContext } from '../context/NavContext';
-
-const NAVIGATION_ITEMS = [
-  { displayName: 'Home', href: '/home', icon: 'home' },
-  { displayName: 'Explore', href: '/explore', icon: 'hashtag' },
-  { displayName: 'Notifications', href: '/notifications', icon: 'bell' },
-  { displayName: 'Messages', href: '/messages', icon: 'envelope' },
-  { displayName: 'Profile', href: '/profile', icon: 'user' },
-];
+import { NavContext } from '../../../context/NavContext';
+import { NAVIGATION_ITEMS, ROUTES } from '../../../lib/constants';
 
 export default function Nav() {
   const { setIsTweetModalOpen } = useContext(NavContext);
 
   return (
     <nav className="flex flex-col w-275 px-3">
-      <Link href="/home" passHref>
+      <Link href={ROUTES.HOME} passHref>
         <a className="p-3">
           <FontAwesomeIcon icon="kiwi-bird" className=" text-2xl" />
         </a>

@@ -1,8 +1,8 @@
 import React from 'react';
-import Search from './Search';
-import WhoToFollow from './WhoToFollow';
-import WhatsHappening from './WhatsHappening';
-import Footer from './Footer';
+import Search from '../Search';
+import WhoToFollow from '../WhoToFollow';
+import WhatsHappening from '../WhatsHappening';
+import Footer from '../Footer';
 
 export default function RightNav() {
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import styles from '../../styles/search.module.css';
+import styles from '../../../styles/search.module.css';
 
 export default function Search() {
   const [searchValue, setSearchValue] = useState('');

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { SignUpContext } from '../../context/SignUpContext';
+import { SignUpContext } from '../../../context/SignUpContext';
 
 export default function CustomizeStep({ setStep }) {
   const {

@@ -2,9 +2,9 @@ import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import Layout from '../components/Layout';
-import RightNav from '../components/RightNav';
-import ProfileHeader from '../components/Profile/ProfileHeader';
-import ProfileTimeline from '../components/Profile/ProfileTimeline';
+import RightNav from '../components/shared/Layout/RightNav';
+import ProfileHeader from '../components/profile/ProfileHeader';
+import ProfileTimeline from '../components/profile/ProfileTimeline';
 
 import { AuthContext } from '../context/AuthContext';
 

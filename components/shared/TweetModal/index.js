@@ -3,7 +3,7 @@ import { Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NewTweet from '../NewTweet';
 
-import { NavContext } from '../../context/NavContext';
+import { NavContext } from '../../../context/NavContext';
 
 export default function TweetModal() {
   const { isTweetModalOpen, setIsTweetModalOpen } = useContext(NavContext);
