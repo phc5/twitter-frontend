@@ -1,6 +1,5 @@
 import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Layout from '../components/Layout';
 import Timeline from '../components/Timeline';
@@ -9,6 +8,7 @@ import Search from '../components/Search';
 import WhoToFollow from '../components/WhoToFollow';
 import WhatsHappening from '../components/WhatsHappening';
 import TweetModal from '../components/TweetModal';
+import Footer from '../components/Footer';
 
 import { AuthContext } from '../context/AuthContext';
 import { HomeProvider } from '../context/HomeContext';
@@ -43,21 +43,7 @@ export default function Home() {
           <div className="sticky top-0">
             <WhatsHappening />
             <WhoToFollow />
-            <div className="text-sm text-lightGray flex flex-wrap p-4">
-              <span className="mr-2">Terms of Service</span>
-              <span className="mr-2">Privacy Policy</span>
-              <span className="mr-2">Cookie Policy</span>
-              <span className="mr-2">Cookie Policy</span>
-              <span className="mr-2">
-                More{' '}
-                <FontAwesomeIcon
-                  icon="ellipsis-h"
-                  className="text-xs"
-                  fixedWidth
-                />
-              </span>
-              <span className="mr-2">© 2021 Kwitter, Inc.</span>
-            </div>
+            <Footer />
           </div>
         </div>
         <TweetModal />
