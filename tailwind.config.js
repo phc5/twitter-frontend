@@ -26,12 +26,18 @@ module.exports = {
         lighter: '#E1E8ED',
         lightest: '#F5F8FA',
       },
+      margin: {
+        '-3/20': '-15%',
+      },
       maxWidth: {
         '600px': '600px',
       },
       minHeight: {
         '60px': '60px',
         '120px': '120px',
+      },
+      padding: {
+        '1/3': '33%',
       },
       width: {
         68: '68px',

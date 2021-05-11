@@ -1,6 +1,11 @@
 import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
+
 import Layout from '../components/Layout';
+import RightNav from '../components/RightNav';
+import ProfileHeader from '../components/Profile/ProfileHeader';
+import ProfileTimeline from '../components/Profile/ProfileTimeline';
+
 import { AuthContext } from '../context/AuthContext';
 
 export default function Profile() {
@@ -17,7 +22,13 @@ export default function Profile() {
 
   return (
     <Layout>
-      <div className="w-997">PROFILE</div>
+      <div className="border-r border-borderGray w-full max-w-600px">
+        <ProfileHeader />
+
+        <ProfileTimeline />
+      </div>
+
+      <RightNav />
     </Layout>
   );
 }

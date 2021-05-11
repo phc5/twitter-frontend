@@ -4,10 +4,7 @@ import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import Timeline from '../components/Timeline';
 import NewTweet from '../components/NewTweet';
-import Search from '../components/Search';
-import WhoToFollow from '../components/WhoToFollow';
-import WhatsHappening from '../components/WhatsHappening';
-import Footer from '../components/Footer';
+import RightNav from '../components/RightNav';
 
 import { AuthContext } from '../context/AuthContext';
 
@@ -35,14 +32,7 @@ export default function Home() {
         <Timeline />
       </div>
 
-      <div className="hidden lg:flex w-350 mr-3 flex-col py-2">
-        <Search />
-        <div className="sticky top-0">
-          <WhatsHappening />
-          <WhoToFollow />
-          <Footer />
-        </div>
-      </div>
+      <RightNav />
     </Layout>
   );
 }
