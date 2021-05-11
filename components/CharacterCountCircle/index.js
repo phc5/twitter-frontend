@@ -27,7 +27,7 @@ export default function CharacterCountCircle({ characterCount }) {
       <svg
         className={`${
           characterCount > 0 ? 'block' : 'hidden'
-        }text-light transform duration-200 ease-in-out -rotate-90 ${
+        } text-light transform duration-200 ease-in-out -rotate-90 ${
           isNearEnd ? 'scale-125' : 'scale-100'
         }`}
         width={SIZE}
