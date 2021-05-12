@@ -5,7 +5,6 @@ import ErrorTimeline from './ErrorTimeline';
 import EmptyTimeline from './EmptyTimeline';
 import Tweet from '../../shared/Tweet';
 import Spinner from '../../shared/Spinner';
-import { getMyTimeline } from '../../../lib/backend/queries';
 import {
   like,
   retweet,
@@ -13,32 +12,31 @@ import {
   unretweet,
 } from '../../../lib/backend/mutations';
 
-const getKey = (pageIndex, previousPageData) => {
+const getKey = (pageIndex, previousPageData, queryKey) => {
   if (previousPageData && !previousPageData.nextToken) return null;
 
-  if (pageIndex === 0) return [`getMyTimeline`, null];
+  if (pageIndex === 0) return [queryKey, null];
 
   return [
-    `getMyTimeline${previousPageData.nextToken}`,
+    `${queryKey}${previousPageData.nextToken}`,
     previousPageData.nextToken,
   ];
 };
 
-export default function Timeline() {
+export default function Timeline({ query, queryKey, queryArgs }) {
   const [ref, setRef] = useState();
   const { isIntersecting } = useIntersectionObserver(ref, {
     rootMargin: '0% 0% 25% 0%',
   });
 
-  const {
-    data,
-    error,
-    mutate,
-    size,
-    setSize,
-    isValidating,
-  } = useSWRInfinite(getKey, (_, nextToken) => getMyTimeline(nextToken));
+  const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
+    (pageIndex, previousPageData) =>
+      getKey(pageIndex, previousPageData, queryKey),
+    (_, nextToken) =>
+      queryArgs?.length > 0 ? query(...queryArgs, nextToken) : query(nextToken)
+  );
 
+  console.log(error);
   const tweetsArray =
     Array.isArray(data) && data.map((page) => page.tweets).flat(1);
   const isEnd = data && data[data.length - 1].nextToken == null;

@@ -8,6 +8,8 @@ import NewTweet from '../components/shared/NewTweet';
 
 import { AuthContext } from '../context/AuthContext';
 
+import { getMyTimeline } from '../lib/backend/queries';
+
 export default function Home() {
   const { user } = useContext(AuthContext);
 
@@ -29,7 +31,7 @@ export default function Home() {
         </div>
         <NewTweet />
         <div className="h-3 w-full border-t border-b border-borderGray bg-lightGray bg-opacity-20"></div>
-        <Timeline />
+        <Timeline query={getMyTimeline} queryKey="getMyTimeline" />
       </div>
 
       <RightNav />

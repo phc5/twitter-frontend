@@ -10,7 +10,7 @@ export default function Nav() {
   const { setIsTweetModalOpen } = useContext(NavContext);
 
   return (
-    <nav className="flex flex-col w-275 px-3">
+    <nav className="flex flex-col w-full lg:w-275 px-3">
       <Link href={ROUTES.HOME} passHref>
         <a className="p-3">
           <FontAwesomeIcon icon="kiwi-bird" className=" text-2xl" />

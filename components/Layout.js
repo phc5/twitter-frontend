@@ -32,7 +32,7 @@ export default function Layout({ children }) {
                   <div className="hidden lg:block">
                     <p>{getMyProfileData.name}</p>
                     <p className="text-lightGray font-normal w-36 overflow-ellipsis whitespace-nowrap overflow-hidden">
-                      {getMyProfileData.username}
+                      @{getMyProfileData.username}
                     </p>
                   </div>
                 </div>
