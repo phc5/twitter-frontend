@@ -4,6 +4,7 @@ import useIntersectionObserver from '@react-hook/intersection-observer';
 import ErrorTimeline from './ErrorTimeline';
 import EmptyTimeline from './EmptyTimeline';
 import Tweet from '../../shared/Tweet';
+import Retweet from '../../shared/Retweet';
 import Spinner from '../../shared/Spinner';
 import {
   like,
@@ -36,7 +37,6 @@ export default function Timeline({ query, queryKey, queryArgs }) {
       queryArgs?.length > 0 ? query(...queryArgs, nextToken) : query(nextToken)
   );
 
-  console.log(error);
   const tweetsArray =
     Array.isArray(data) && data.map((page) => page.tweets).flat(1);
   const isEnd = data && data[data.length - 1].nextToken == null;
@@ -46,13 +46,13 @@ export default function Timeline({ query, queryKey, queryArgs }) {
   }, [isIntersecting]);
 
   async function onLikeClick(liked, tweetId) {
-    liked ? await unlike(tweetId) : await like(tweetId);
-    mutate();
+    liked ? await unlike(tweetId, mutate) : await like(tweetId, mutate);
   }
 
   async function onRetweetClick(retweeted, tweetId) {
-    retweeted ? await unretweet(tweetId) : await retweet(tweetId);
-    mutate();
+    retweeted
+      ? await unretweet(tweetId, mutate)
+      : await retweet(tweetId, mutate);
   }
 
   if (error) {
@@ -66,10 +66,20 @@ export default function Timeline({ query, queryKey, queryArgs }) {
   const tweets =
     tweetsArray.length > 0 ? (
       tweetsArray.map((tweet) => {
+        console.log(tweet);
         switch (tweet.__typename) {
           case 'Tweet':
             return (
               <Tweet
+                onLikeClick={onLikeClick}
+                onRetweetClick={onRetweetClick}
+                {...tweet}
+                key={tweet.id}
+              />
+            );
+          case 'Retweet':
+            return (
+              <Retweet
                 onLikeClick={onLikeClick}
                 onRetweetClick={onRetweetClick}
                 {...tweet}

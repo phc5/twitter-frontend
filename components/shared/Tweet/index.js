@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const up = 'inline-flex opacity-0 transform -translate-y-1';
@@ -25,6 +25,13 @@ export default function Tweet({
   const [tweetRetweeted, setTweetRetweeted] = useState(retweeted);
   const [tweetRetweetedCount, setTweetRetweetedCount] = useState(retweetsCount);
   const [retweetAnimation, setRetweetAnimation] = useState(initial);
+
+  useEffect(() => {
+    setTweetLiked(liked);
+    setTweetLikesCount(likesCount);
+    setTweetRetweeted(retweeted);
+    setTweetRetweetedCount(retweetsCount);
+  }, [liked, likesCount, retweeted, retweetsCount]);
 
   return (
     <div className="flex border-borderGray border-b p-4 hover:bg-gray-500 hover:bg-opacity-10 cursor-pointer text-sm">
