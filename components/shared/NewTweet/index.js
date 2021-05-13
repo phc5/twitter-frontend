@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TextareaAutosize from 'react-textarea-autosize';
-import { tweet } from '../../../lib/backend/mutations';
+import Spinner from '../Spinner';
 import CharacterCountCircle from '../CharacterCountCircle';
+import { tweet } from '../../../lib/backend/mutations';
 
 export default function NewTweet({ isModal }) {
   const [tweetValue, setTweetValue] = useState('');
+  const [newTweetLoading, setNewTweetLoading] = useState(false);
 
   async function onTweetClick(event) {
     event.preventDefault();
+    setNewTweetLoading(true);
     await tweet(tweetValue);
+    setNewTweetLoading(false);
   }
 
   return (
@@ -55,12 +59,22 @@ export default function NewTweet({ isModal }) {
 
             <button
               type="button"
-              className={`items-center h-10 px-4 py-2 border border-transparent text-sm font-bold rounded-full bg-blue opacity-60 pointer-events-none focus:outline-none ${
-                tweetValue.length > 0 ? 'opacity-100 pointer-events-auto' : ''
+              className={`items-center justify-center h-10 px-4 py-2 border border-transparent text-sm font-bold rounded-full bg-blue  pointer-events-none focus:outline-none ${
+                tweetValue.length > 0 ? 'pointer-events-auto' : ''
               }`}
               onClick={onTweetClick}
             >
-              Tweet
+              {newTweetLoading ? (
+                <Spinner className="text-white" />
+              ) : (
+                <p
+                  className={`opacity-60 ${
+                    tweetValue.length > 0 ? 'opacity-100' : ''
+                  }`}
+                >
+                  Tweet
+                </p>
+              )}
             </button>
           </div>
         </div>

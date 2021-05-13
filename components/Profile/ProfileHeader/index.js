@@ -9,7 +9,7 @@ export default function ProfileHeader() {
   const { getMyProfileData } = useContext(AppContext);
 
   if (!getMyProfileData) {
-    return <Spinner />;
+    return <Spinner className="text-blue -ml-1 mr-3" />;
   }
 
   const {

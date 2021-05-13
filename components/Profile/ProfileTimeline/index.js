@@ -25,7 +25,11 @@ export default function ProfileTimeline() {
   } = useContext(AppContext);
 
   if (!getMyProfileData) {
-    return <Spinner />;
+    return (
+      <div className="flex items-center justify-center h-20">
+        <Spinner className="text-blue -ml-1 mr-3" />
+      </div>
+    );
   }
 
   return (

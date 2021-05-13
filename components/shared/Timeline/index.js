@@ -60,7 +60,11 @@ export default function Timeline({ query, queryKey, queryArgs }) {
   }
 
   if (!data) {
-    return <Spinner />;
+    return (
+      <div className="flex items-center justify-center h-20">
+        <Spinner className="text-blue -ml-1 mr-3" />
+      </div>
+    );
   }
 
   const tweets =
@@ -97,8 +101,8 @@ export default function Timeline({ query, queryKey, queryArgs }) {
     <>
       {tweets}
       {!isEnd && (
-        <div ref={setRef}>
-          <Spinner />
+        <div ref={setRef} className="flex items-center justify-center h-20">
+          <Spinner className="text-blue -ml-1 mr-3" />
         </div>
       )}
     </>
