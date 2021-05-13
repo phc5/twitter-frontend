@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 import Layout from '../components/Layout';
 import RightNav from '../components/shared/Layout/RightNav';
-import Timeline from '../components/home/Timeline';
+import Timeline from '../components/shared/Timeline';
 import NewTweet from '../components/shared/NewTweet';
 
 import { AuthContext } from '../context/AuthContext';

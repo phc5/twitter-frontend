@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import Timeline from '../../home/Timeline';
+import Timeline from '../../shared/Timeline';
 import Spinner from '../../shared/Spinner';
 import { AppContext } from '../../../context/AppContext';
 import { getTweets } from '../../../lib/backend/queries';

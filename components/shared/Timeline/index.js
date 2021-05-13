@@ -3,9 +3,9 @@ import { useSWRInfinite } from 'swr';
 import useIntersectionObserver from '@react-hook/intersection-observer';
 import ErrorTimeline from './ErrorTimeline';
 import EmptyTimeline from './EmptyTimeline';
-import Tweet from '../../shared/Tweet';
-import Retweet from '../../shared/Retweet';
-import Spinner from '../../shared/Spinner';
+import Tweet from '../Tweet';
+import Retweet from '../Retweet';
+import Spinner from '../Spinner';
 import {
   like,
   retweet,
@@ -66,7 +66,6 @@ export default function Timeline({ query, queryKey, queryArgs }) {
   const tweets =
     tweetsArray.length > 0 ? (
       tweetsArray.map((tweet) => {
-        console.log(tweet);
         switch (tweet.__typename) {
           case 'Tweet':
             return (
