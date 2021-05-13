@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Timeline from '../../shared/Timeline';
-import Spinner from '../../shared/Spinner';
-import { AppContext } from '../../../context/AppContext';
-import { getTweets } from '../../../lib/backend/queries';
+
+import { ProfileContext } from '../../../context/ProfileContext';
 
 const tabs = [
   { name: 'Tweets', href: '#', current: true },
@@ -18,19 +17,13 @@ function classNames(...classes) {
 export default function ProfileTimeline() {
   const [currentTab, setCurrentTab] = useState(0);
   const {
-    getMyProfileData,
-    getMyProfileError,
-    getMyProfileIsValidating,
-    getMyProfileMutate,
-  } = useContext(AppContext);
-
-  if (!getMyProfileData) {
-    return (
-      <div className="flex items-center justify-center h-20">
-        <Spinner className="text-blue -ml-1 mr-3" />
-      </div>
-    );
-  }
+    getTweetsData,
+    getTweetsError,
+    getTweetsMutate,
+    getTweetsSize,
+    getTweetsSetSize,
+    getTweetsIsValidating,
+  } = useContext(ProfileContext);
 
   return (
     <div className="block">
@@ -54,9 +47,12 @@ export default function ProfileTimeline() {
       </nav>
       <div>
         <Timeline
-          queryKey="getTweets"
-          query={getTweets}
-          queryArgs={[getMyProfileData.id]}
+          data={getTweetsData}
+          error={getTweetsError}
+          mutate={getTweetsMutate}
+          size={getTweetsSize}
+          setSize={getTweetsSetSize}
+          isValidating={getTweetsIsValidating}
         />
       </div>
     </div>

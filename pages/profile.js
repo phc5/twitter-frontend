@@ -7,6 +7,7 @@ import ProfileHeader from '../components/profile/ProfileHeader';
 import ProfileTimeline from '../components/profile/ProfileTimeline';
 
 import { AuthContext } from '../context/AuthContext';
+import { ProfileProvider } from '../context/ProfileContext';
 
 export default function Profile() {
   const { user } = useContext(AuthContext);
@@ -21,14 +22,16 @@ export default function Profile() {
   }
 
   return (
-    <Layout>
-      <div className="border-r border-borderGray w-full max-w-600px">
-        <ProfileHeader />
+    <ProfileProvider>
+      <Layout>
+        <div className="border-r border-borderGray w-full max-w-600px">
+          <ProfileHeader />
 
-        <ProfileTimeline />
-      </div>
+          <ProfileTimeline />
+        </div>
 
-      <RightNav />
-    </Layout>
+        <RightNav />
+      </Layout>
+    </ProfileProvider>
   );
 }

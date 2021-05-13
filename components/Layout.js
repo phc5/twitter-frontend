@@ -1,12 +1,26 @@
 import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router';
 import Nav from './shared/Layout/Nav';
 import TweetModal from './shared/TweetModal';
 import { NavProvider } from '../context/NavContext';
 import { AppContext } from '../context/AppContext';
+import { HomeContext } from '../context/HomeContext';
+import { ROUTES } from '../lib/constants';
+import { ProfileContext } from '../context/ProfileContext';
 
 export default function Layout({ children }) {
   const { getMyProfileData } = useContext(AppContext);
+  const router = useRouter();
+
+  switch (router.route) {
+    case ROUTES.HOME:
+      var { timelineMutate: mutate } = useContext(HomeContext);
+      break;
+    case ROUTES.PROFILE:
+      var { getTweetsMutate: mutate } = useContext(ProfileContext);
+      break;
+  }
 
   return (
     <NavProvider>
@@ -43,7 +57,6 @@ export default function Layout({ children }) {
               </div>
             )}
           </header>
-
           <main className="flex-grow flex-shrink items-start overflow-y-scroll">
             <div className="w-full lg:w-990 flex-grow flex-shrink">
               <div className="flex-grow">
@@ -53,8 +66,7 @@ export default function Layout({ children }) {
               </div>
             </div>
           </main>
-
-          <TweetModal />
+          <TweetModal mutate={mutate} />
         </div>
       </div>
     </NavProvider>

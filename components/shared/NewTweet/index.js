@@ -5,15 +5,17 @@ import Spinner from '../Spinner';
 import CharacterCountCircle from '../CharacterCountCircle';
 import { tweet } from '../../../lib/backend/mutations';
 
-export default function NewTweet({ isModal }) {
+export default function NewTweet({ isModal, mutate, setIsTweetModalOpen }) {
   const [tweetValue, setTweetValue] = useState('');
-  const [newTweetLoading, setNewTweetLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   async function onTweetClick(event) {
     event.preventDefault();
-    setNewTweetLoading(true);
+    setLoading(true);
     await tweet(tweetValue);
-    setNewTweetLoading(false);
+    await mutate();
+    isModal && setIsTweetModalOpen(false);
+    setLoading(false);
   }
 
   return (
@@ -64,7 +66,7 @@ export default function NewTweet({ isModal }) {
               }`}
               onClick={onTweetClick}
             >
-              {newTweetLoading ? (
+              {loading ? (
                 <Spinner className="text-white" />
               ) : (
                 <p

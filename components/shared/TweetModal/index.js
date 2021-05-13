@@ -5,7 +5,7 @@ import NewTweet from '../NewTweet';
 
 import { NavContext } from '../../../context/NavContext';
 
-export default function TweetModal() {
+export default function TweetModal({ mutate }) {
   const { isTweetModalOpen, setIsTweetModalOpen } = useContext(NavContext);
 
   return (
@@ -60,7 +60,11 @@ export default function TweetModal() {
                 <FontAwesomeIcon icon="times" className="text-blue" />
               </button>
             </div>
-            <NewTweet isModal />
+            <NewTweet
+              isModal
+              mutate={mutate}
+              setIsTweetModalOpen={setIsTweetModalOpen}
+            />
           </div>
         </Transition>
       </div>

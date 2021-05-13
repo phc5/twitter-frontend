@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useSWRInfinite } from 'swr';
 import useIntersectionObserver from '@react-hook/intersection-observer';
 import ErrorTimeline from './ErrorTimeline';
 import EmptyTimeline from './EmptyTimeline';
@@ -13,33 +12,18 @@ import {
   unretweet,
 } from '../../../lib/backend/mutations';
 
-const getKey = (pageIndex, previousPageData, queryKey) => {
-  if (previousPageData && !previousPageData.nextToken) return null;
-
-  if (pageIndex === 0) return [queryKey, null];
-
-  return [
-    `${queryKey}${previousPageData.nextToken}`,
-    previousPageData.nextToken,
-  ];
-};
-
-export default function Timeline({ query, queryKey, queryArgs }) {
+export default function Timeline({
+  data,
+  error,
+  mutate,
+  size,
+  setSize,
+  isValidating,
+}) {
   const [ref, setRef] = useState();
   const { isIntersecting } = useIntersectionObserver(ref, {
     rootMargin: '0% 0% 25% 0%',
   });
-
-  const { data, error, mutate, size, setSize, isValidating } = useSWRInfinite(
-    (pageIndex, previousPageData) =>
-      getKey(pageIndex, previousPageData, queryKey),
-    (_, nextToken) =>
-      queryArgs?.length > 0 ? query(...queryArgs, nextToken) : query(nextToken)
-  );
-
-  const tweetsArray =
-    Array.isArray(data) && data.map((page) => page.tweets).flat(1);
-  const isEnd = data && data[data.length - 1].nextToken == null;
 
   useEffect(() => {
     if (isIntersecting && !isEnd) setSize(size + 1);
@@ -67,6 +51,15 @@ export default function Timeline({ query, queryKey, queryArgs }) {
     );
   }
 
+  const tweetsArray =
+    Array.isArray(data) &&
+    data
+      .map((page) => page.tweets)
+      .flat(1)
+      .filter((tweet) => tweet !== null);
+  const isEnd = data && data[data.length - 1].nextToken == null;
+
+  console.log(tweetsArray);
   const tweets =
     tweetsArray.length > 0 ? (
       tweetsArray.map((tweet) => {
