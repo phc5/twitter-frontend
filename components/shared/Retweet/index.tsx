@@ -5,6 +5,35 @@ const up = 'inline-flex opacity-0 transform -translate-y-1';
 const down = 'inline-flex opacity-0 transform translate-y-1';
 const initial = 'inline-flex opacity-1 transform translate-y-0';
 
+type RetweetProps = {
+  id: string;
+  createdAt: string;
+  profile: {
+    id: string;
+    imageUrl?: string;
+    name: string;
+    username: string;
+  };
+  retweetOf: {
+    id: string;
+    createdAt: string;
+    liked: boolean;
+    likesCount: number;
+    repliesCount: number;
+    retweeted: boolean;
+    retweetsCount: number;
+    text: string;
+    profile: {
+      id: string;
+      imageUrl?: string;
+      name: string;
+      username: string;
+    };
+  };
+  onLikeClick: (liked: boolean, tweetId: string) => Promise<void>;
+  onRetweetClick: (retweeted: boolean, tweetId: string) => Promise<void>;
+};
+
 export default function Retweet({
   id,
   createdAt,
@@ -12,7 +41,7 @@ export default function Retweet({
   retweetOf,
   onLikeClick,
   onRetweetClick,
-}) {
+}: RetweetProps) {
   const { name } = profile;
   const {
     id: retweetedId,

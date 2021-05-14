@@ -1,6 +1,10 @@
 import React from 'react';
 
-export default function Spinner({ className }) {
+type SpinnerProps = {
+  className: string;
+};
+
+export default function Spinner({ className }: SpinnerProps) {
   return (
     <svg
       className={`animate-spin h-5 w-5 ${className}`}

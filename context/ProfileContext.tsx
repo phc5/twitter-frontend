@@ -1,13 +1,17 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, ReactNode } from 'react';
 import { useSWRInfinite } from 'swr';
 
 import { AppContext } from './AppContext';
 import { getTweets } from '../lib/backend/queries';
 import getKey from '../lib/getKey';
 
+type ProfileProviderProps = {
+  children: ReactNode;
+};
+
 export const ProfileContext = createContext(null);
 
-export const ProfileProvider = ({ children }) => {
+export const ProfileProvider = ({ children }: ProfileProviderProps) => {
   const { getMyProfileData } = useContext(AppContext);
 
   const {

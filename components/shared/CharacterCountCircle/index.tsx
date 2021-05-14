@@ -3,16 +3,22 @@ import React, { useEffect, useState, useRef } from 'react';
 const SIZE = 25;
 const STROKE_WIDTH = 2;
 
-export default function CharacterCountCircle({ characterCount }) {
+type CharacterCountCirleProps = {
+  characterCount: number;
+};
+
+export default function CharacterCountCircle({
+  characterCount,
+}: CharacterCountCirleProps) {
   const [offset, setOffset] = useState(0);
   const circleRef = useRef(null);
+
   const progress = (characterCount / 180) * 100;
   const center = SIZE / 2;
   const radius = SIZE / 2 - STROKE_WIDTH / 2;
   const circumference = 2 * Math.PI * radius;
   const isNearEnd = 180 - characterCount <= 9;
   const isEnd = 180 - characterCount === 0;
-
   const stroke = isEnd ? '#DC2626' : isNearEnd ? '#F7B356' : '#2795D9';
 
   useEffect(() => {

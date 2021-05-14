@@ -1,15 +1,13 @@
-import React, { useContext } from 'react';
+import React, { Dispatch, SetStateAction, useContext } from 'react';
 import { SignUpContext } from '../../../context/SignUpContext';
 
-export default function CreateAccountStep({ setStep }) {
-  const {
-    name,
-    setName,
-    email,
-    setEmail,
-    birthdate,
-    setBirthDate,
-  } = useContext(SignUpContext);
+type CreateAccountStepProps = {
+  setStep: Dispatch<SetStateAction<number>>;
+};
+
+export default function CreateAccountStep({ setStep }: CreateAccountStepProps) {
+  const { name, setName, email, setEmail, birthdate, setBirthDate } =
+    useContext(SignUpContext);
 
   return (
     <div className="px-3 mb-8">

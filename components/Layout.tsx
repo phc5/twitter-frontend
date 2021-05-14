@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, ReactNode } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import Nav from './shared/Layout/Nav';
@@ -9,7 +9,11 @@ import { HomeContext } from '../context/HomeContext';
 import { ROUTES } from '../lib/constants';
 import { ProfileContext } from '../context/ProfileContext';
 
-export default function Layout({ children }) {
+type LayoutProps = {
+  children: ReactNode;
+};
+
+export default function Layout({ children }: LayoutProps) {
   const { getMyProfileData } = useContext(AppContext);
   const router = useRouter();
 

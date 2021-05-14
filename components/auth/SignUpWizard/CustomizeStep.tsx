@@ -1,8 +1,12 @@
-import React, { useContext } from 'react';
+import React, { Dispatch, SetStateAction, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { SignUpContext } from '../../../context/SignUpContext';
 
-export default function CustomizeStep({ setStep }) {
+type CustomizeStepProps = {
+  setStep: Dispatch<SetStateAction<number>>;
+};
+
+export default function CustomizeStep({ setStep }: CustomizeStepProps) {
   const {
     isGetMoreChecked,
     setIsGetMoreChecked,

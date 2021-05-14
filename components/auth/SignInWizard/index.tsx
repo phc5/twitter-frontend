@@ -14,7 +14,7 @@ export default function SignInWizard() {
   const [signInLoading, setSignInLoading] = useState(false);
   const [signInError, setSignInError] = useState('');
 
-  async function signIn() {
+  async function signIn(): Promise<void> {
     setSignInError('');
     try {
       setSignInLoading(true);

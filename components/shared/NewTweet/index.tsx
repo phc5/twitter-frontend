@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TextareaAutosize from 'react-textarea-autosize';
 import Spinner from '../Spinner';
 import CharacterCountCircle from '../CharacterCountCircle';
 import { tweet } from '../../../lib/backend/mutations';
 
-export default function NewTweet({ isModal, mutate, setIsTweetModalOpen }) {
+type NewTweetProps = {
+  isModal?: boolean;
+  mutate: () => Promise<any[]>;
+  setIsTweetModalOpen?: Dispatch<SetStateAction<boolean>>;
+};
+
+export default function NewTweet({
+  isModal,
+  mutate,
+  setIsTweetModalOpen,
+}: NewTweetProps) {
   const [tweetValue, setTweetValue] = useState('');
   const [loading, setLoading] = useState(false);
 

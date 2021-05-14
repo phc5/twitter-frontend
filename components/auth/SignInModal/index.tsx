@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Transition } from '@headlessui/react';
 import SignInWizard from '../SignInWizard';
+
+type SignInModalProps = {
+  isSignInModalOpen: boolean;
+  setIsSignInModalOpen: Dispatch<SetStateAction<boolean>>;
+};
 
 export default function SignInModal({
   isSignInModalOpen,
   setIsSignInModalOpen,
-}) {
+}: SignInModalProps) {
   return (
     <div
       className={`${

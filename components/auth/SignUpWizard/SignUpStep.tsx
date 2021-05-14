@@ -1,8 +1,12 @@
-import React, { useContext } from 'react';
+import React, { Dispatch, SetStateAction, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { SignUpContext } from '../../../context/SignUpContext';
 
-export default function SignUpStep({ setStep }) {
+type SignUpStepProps = {
+  setStep: Dispatch<SetStateAction<number>>;
+};
+
+export default function SignUpStep({ setStep }: SignUpStepProps) {
   const {
     name,
     setName,
@@ -15,7 +19,7 @@ export default function SignUpStep({ setStep }) {
     signUpLoading,
   } = useContext(SignUpContext);
 
-  async function onSignUpClick() {
+  async function onSignUpClick(): Promise<void> {
     if (name && email && birthdate) {
       await signUp(setStep);
     }

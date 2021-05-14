@@ -1,12 +1,16 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import { Auth } from 'aws-amplify';
 import { AuthContext } from './AuthContext';
-import {ROUTES} from '../lib/constants';
+import { ROUTES } from '../lib/constants';
+
+type SignUpProviderProps = {
+  children: ReactNode;
+};
 
 export const SignUpContext = createContext(null);
 
-export const SignUpProvider = ({ children }) => {
+export const SignUpProvider = ({ children }: SignUpProviderProps) => {
   const router = useRouter();
   const { setUser } = useContext(AuthContext);
 
@@ -34,7 +38,7 @@ export const SignUpProvider = ({ children }) => {
   const [verifyError, setVerifyError] = useState('');
   const [hasResentCode, setHasResentCode] = useState(false);
 
-  async function signUp(successCallback) {
+  async function signUp(successCallback): Promise<void> {
     setSignUpError('');
     try {
       setSignUpLoading(true);
@@ -53,7 +57,7 @@ export const SignUpProvider = ({ children }) => {
     }
   }
 
-  async function verifyUser() {
+  async function verifyUser(): Promise<undefined | void> {
     setVerifyError('');
     if (!verificationCode) {
       setVerifyError(
@@ -75,7 +79,7 @@ export const SignUpProvider = ({ children }) => {
     }
   }
 
-  async function resendVerificationCode() {
+  async function resendVerificationCode(): Promise<void> {
     setVerifyError('');
     try {
       await Auth.resendSignUp(email);

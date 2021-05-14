@@ -26,6 +26,13 @@ const whatsHappening = [
   },
 ];
 
+type WhatsHappeningItem<T> = {
+  time: T;
+  type: T;
+  description: T;
+  imageSrc: T;
+};
+
 export default function WhatsHappening() {
   return (
     <div className="bg-darkerGray flex flex-col rounded-2xl mb-4">
@@ -33,36 +40,41 @@ export default function WhatsHappening() {
         Whats happening
       </h3>
 
-      {whatsHappening.map(({ time, type, imageSrc, description }, index) => (
-        <div
-          key={imageSrc}
-          className={`${
-            index < whatsHappening.length - 1
-              ? 'border-b border-borderGray'
-              : ''
-          } px-4 py-3 tracking-normal leading-snug font-bold text-sm`}
-        >
-          <div className="flex">
-            <div className="flex-1 mr-3">
-              <div className="flex text-lightGray font-normal mb-1">
-                <p className="mr-1">{type}</p>
-                <p className="mr-1">·</p>
-                <p>{time}</p>
+      {whatsHappening.map(
+        (
+          { time, type, imageSrc, description }: WhatsHappeningItem<string>,
+          index: number
+        ) => (
+          <div
+            key={imageSrc}
+            className={`${
+              index < whatsHappening.length - 1
+                ? 'border-b border-borderGray'
+                : ''
+            } px-4 py-3 tracking-normal leading-snug font-bold text-sm`}
+          >
+            <div className="flex">
+              <div className="flex-1 mr-3">
+                <div className="flex text-lightGray font-normal mb-1">
+                  <p className="mr-1">{type}</p>
+                  <p className="mr-1">·</p>
+                  <p>{time}</p>
+                </div>
+                <div>
+                  <p>{description}</p>
+                </div>
               </div>
-              <div>
-                <p>{description}</p>
+              <div className="">
+                <img
+                  draggable="true"
+                  className="w-16 h-16 rounded-2xl object-cover"
+                  src={imageSrc}
+                ></img>
               </div>
-            </div>
-            <div className="">
-              <img
-                draggable="true"
-                className="w-16 h-16 rounded-2xl object-cover"
-                src={imageSrc}
-              ></img>
             </div>
           </div>
-        </div>
-      ))}
+        )
+      )}
     </div>
   );
 }

@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React, { Dispatch, SetStateAction, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { SignUpContext } from '../../../context/SignUpContext';
 
-export default function CreatePassword({ setStep }) {
-  const {
-    password,
-    setPassword,
-    revealPassword,
-    setRevealPassword,
-  } = useContext(SignUpContext);
+type CreatePasswordProps = {
+  setStep: Dispatch<SetStateAction<number>>;
+};
+
+export default function CreatePassword({ setStep }: CreatePasswordProps) {
+  const { password, setPassword, revealPassword, setRevealPassword } =
+    useContext(SignUpContext);
 
   return (
     <div className="px-3 mb-8">

@@ -1,12 +1,16 @@
-import { createContext, useState } from 'react';
+import { createContext, ReactNode } from 'react';
 import { useSWRInfinite } from 'swr';
 
 import { getMyTimeline } from '../lib/backend/queries';
 import getKey from '../lib/getKey';
 
+type HomeProviderProps = {
+  children: ReactNode,
+};
+
 export const HomeContext = createContext(null);
 
-export const HomeProvider = ({ children }) => {
+export const HomeProvider = ({ children }: HomeProviderProps) => {
   const {
     data: timelineData,
     error: timelineError,

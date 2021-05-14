@@ -1,10 +1,15 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { NavContext } from '../../../context/NavContext';
-import { NAVIGATION_ITEMS, ROUTES } from '../../../lib/constants';
+import {
+  NAVIGATION_ITEMS,
+  ROUTES,
+  NavigationItem,
+} from '../../../lib/constants';
 
 export default function Nav() {
   const { setIsTweetModalOpen } = useContext(NavContext);
@@ -46,7 +51,7 @@ function NavigationItems() {
 
   return (
     <>
-      {NAVIGATION_ITEMS.map(({ displayName, href, icon }) => {
+      {NAVIGATION_ITEMS.map(({ displayName, href, icon }: NavigationItem) => {
         return (
           <Link href={href} passHref key={displayName}>
             <a
@@ -55,7 +60,11 @@ function NavigationItems() {
               } text-xl font-bold hover:text-blue group`}
             >
               <div className="p-2 my-1 flex items-center rounded-full group-hover:bg-darkestblue w-fitContent transition-colors">
-                <FontAwesomeIcon icon={icon} className="text-2xl" fixedWidth />
+                <FontAwesomeIcon
+                  icon={icon as IconName}
+                  className="text-2xl"
+                  fixedWidth
+                />
                 <p className="hidden lg:block mx-4">{displayName}</p>
               </div>
             </a>

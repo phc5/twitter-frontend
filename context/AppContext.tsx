@@ -1,11 +1,15 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, ReactNode } from 'react';
 import useSWR from 'swr';
 
 import { getMyProfile } from '../lib/backend/queries';
 
+type AppProviderProps = {
+  children: ReactNode;
+};
+
 export const AppContext = createContext(null);
 
-export const AppProvider = ({ children }) => {
+export const AppProvider = ({ children }: AppProviderProps) => {
   const [loading, setLoading] = useState(true);
   const [isTweetModalOpen, setIsTweetModalOpen] = useState(false);
 

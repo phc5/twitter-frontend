@@ -1,3 +1,9 @@
+export type NavigationItem = {
+  displayName: string;
+  href: string;
+  icon: string;
+};
+
 const PAGE_TITLES = Object.freeze({
   HOME: 'Home',
   EXPLORE: 'Explore',
@@ -14,7 +20,7 @@ const ROUTES = Object.freeze({
   PROFILE: '/profile',
 });
 
-const NAVIGATION_ITEMS = [
+const NAVIGATION_ITEMS: NavigationItem[] = [
   { displayName: PAGE_TITLES.HOME, href: ROUTES.HOME, icon: 'home' },
   { displayName: PAGE_TITLES.EXPLORE, href: ROUTES.EXPLORE, icon: 'hashtag' },
   {

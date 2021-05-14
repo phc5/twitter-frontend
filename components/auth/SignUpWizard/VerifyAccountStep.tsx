@@ -1,8 +1,12 @@
-import React, { useContext } from 'react';
+import React, { Dispatch, SetStateAction, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { SignUpContext } from '../../../context/SignUpContext';
 
-export default function VerifyAccountStep({ setStep }) {
+type VerifyAccountProps = {
+  setStep: Dispatch<SetStateAction<number>>;
+};
+
+export default function VerifyAccountStep({ setStep }: VerifyAccountProps) {
   const {
     email,
     verificationCode,
@@ -10,7 +14,6 @@ export default function VerifyAccountStep({ setStep }) {
     verifyError,
     verifyLoading,
     hasResentCode,
-
     verifyUser,
     resendVerificationCode,
   } = useContext(SignUpContext);

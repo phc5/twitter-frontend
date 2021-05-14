@@ -5,11 +5,11 @@ import { useRouter } from 'next/router';
 
 export const AuthContext = createContext(null);
 
-type Props = {
+type AuthProviderProps = {
   children: ReactNode;
 };
 
-export const AuthProvider = ({ children }: Props) => {
+export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authState, setAuthState] = useState(null);
   const [user, setUser] = useState(null);
   const router = useRouter();
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }: Props) => {
     });
   }, []);
 
-  async function signout() {
+  async function signout(): Promise<void> {
     await Auth.signOut({ global: true });
     router.push('/');
   }

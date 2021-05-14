@@ -5,6 +5,25 @@ const up = 'inline-flex opacity-0 transform -translate-y-1';
 const down = 'inline-flex opacity-0 transform translate-y-1';
 const initial = 'inline-flex opacity-1 transform translate-y-0';
 
+type TweetProps = {
+  id: string;
+  createdAt: string;
+  profile: {
+    id: string;
+    imageUrl?: string;
+    name: string;
+    username: string;
+  };
+  liked: boolean;
+  likesCount: number;
+  repliesCount: number;
+  retweeted: boolean;
+  retweetsCount: number;
+  text: string;
+  onLikeClick: (liked: boolean, tweetId: string) => Promise<void>;
+  onRetweetClick: (retweeted: boolean, tweetId: string) => Promise<void>;
+};
+
 export default function Tweet({
   id,
   createdAt,
@@ -17,7 +36,7 @@ export default function Tweet({
   text,
   onLikeClick,
   onRetweetClick,
-}) {
+}: TweetProps) {
   const [tweetLiked, setTweetLiked] = useState(liked);
   const [tweetLikesCount, setTweetLikesCount] = useState(likesCount);
   const [likeAnimation, setLikeAnimation] = useState(initial);

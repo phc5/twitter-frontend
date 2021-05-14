@@ -5,7 +5,11 @@ import NewTweet from '../NewTweet';
 
 import { NavContext } from '../../../context/NavContext';
 
-export default function TweetModal({ mutate }) {
+type TweetModalProps = {
+  mutate: () => Promise<any[]>;
+};
+
+export default function TweetModal({ mutate }: TweetModalProps) {
   const { isTweetModalOpen, setIsTweetModalOpen } = useContext(NavContext);
 
   return (

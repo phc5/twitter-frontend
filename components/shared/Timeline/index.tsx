@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useIntersectionObserver from '@react-hook/intersection-observer';
+import { SWRInfiniteResponse } from 'swr';
 import ErrorTimeline from './ErrorTimeline';
 import EmptyTimeline from './EmptyTimeline';
 import Tweet from '../Tweet';
@@ -12,6 +13,15 @@ import {
   unretweet,
 } from '../../../lib/backend/mutations';
 
+type TimelineProps = {
+  data: any[];
+  error: any;
+  mutate: Promise<any[]>;
+  size: number;
+  setSize: (size: number) => Promise<any[]>;
+  isValidating: boolean;
+};
+
 export default function Timeline({
   data,
   error,
@@ -19,8 +29,8 @@ export default function Timeline({
   size,
   setSize,
   isValidating,
-}) {
-  const [ref, setRef] = useState();
+}: TimelineProps) {
+  const [ref, setRef] = useState(null);
   const { isIntersecting } = useIntersectionObserver(ref, {
     rootMargin: '0% 0% 25% 0%',
   });
@@ -29,11 +39,14 @@ export default function Timeline({
     if (isIntersecting && !isEnd) setSize(size + 1);
   }, [isIntersecting]);
 
-  async function onLikeClick(liked, tweetId) {
+  async function onLikeClick(liked: boolean, tweetId: string): Promise<void> {
     liked ? await unlike(tweetId, mutate) : await like(tweetId, mutate);
   }
 
-  async function onRetweetClick(retweeted, tweetId) {
+  async function onRetweetClick(
+    retweeted: boolean,
+    tweetId: string
+  ): Promise<void> {
     retweeted
       ? await unretweet(tweetId, mutate)
       : await retweet(tweetId, mutate);
@@ -59,7 +72,6 @@ export default function Timeline({
       .filter((tweet) => tweet !== null);
   const isEnd = data && data[data.length - 1].nextToken == null;
 
-  console.log(tweetsArray);
   const tweets =
     tweetsArray.length > 0 ? (
       tweetsArray.map((tweet) => {
