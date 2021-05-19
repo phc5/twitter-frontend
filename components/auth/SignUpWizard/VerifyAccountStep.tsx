@@ -18,6 +18,8 @@ export default function VerifyAccountStep({ setStep }: VerifyAccountProps) {
     resendVerificationCode,
   } = useContext(SignUpContext);
 
+  console.log(verificationCode?.length);
+
   const errorComponent = verifyError !== '' && (
     <div className="rounded-md bg-red-50 p-4 mt-4 text-center flex items-center">
       <FontAwesomeIcon
@@ -38,7 +40,9 @@ export default function VerifyAccountStep({ setStep }: VerifyAccountProps) {
           <FontAwesomeIcon icon="arrow-left" className="text-blue" />
         </button>
         <button
-          className="rounded-full bg-blue font-bold  mt-2 p-1 pl-3 pr-3 relative hover:bg-darkblue focus:outline-none text-white"
+          className={`rounded-full bg-blue font-bold  mt-2 p-1 pl-3 pr-3 relative hover:bg-darkblue focus:outline-none text-white ${
+            verificationCode?.length === 0 && 'opacity-50 pointer-events-none'
+          }`}
           onClick={verifyUser}
         >
           {verifyLoading ? (
