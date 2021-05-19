@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
-import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Spinner from '../../shared/Spinner';
 import { AppContext } from '../../../context/AppContext';
 
 export default function ProfileHeader() {
-  const router = useRouter();
   const { getMyProfileData } = useContext(AppContext);
 
   if (!getMyProfileData) {
@@ -14,7 +12,6 @@ export default function ProfileHeader() {
 
   const {
     name,
-    tweetsCount,
     imageUrl,
     username,
     createdAt,
@@ -24,19 +21,6 @@ export default function ProfileHeader() {
 
   return (
     <div className="mb-4">
-      <div className="flex items-center px-5 py-1 sticky top-0 z-20 bg-black">
-        <FontAwesomeIcon
-          icon="arrow-left"
-          className="text-blue mr-8 cursor-pointer"
-          fixedWidth
-          onClick={() => router.back()}
-        />
-        <div>
-          <h1 className="text-xl font-extrabold">{name}</h1>
-          <p className="text-xs text-lightGray">{tweetsCount} Tweets</p>
-        </div>
-      </div>
-
       <div>
         <div className="bg-borderGray">
           <div className="overflow-hidden bg-borderGray block relative">

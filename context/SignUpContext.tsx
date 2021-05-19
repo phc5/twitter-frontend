@@ -2,6 +2,7 @@ import { createContext, useState, useContext, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import { Auth } from 'aws-amplify';
 import { AuthContext } from './AuthContext';
+import { AppContext } from './AppContext';
 import { ROUTES } from '../lib/constants';
 
 type SignUpProviderProps = {
@@ -13,6 +14,7 @@ export const SignUpContext = createContext(null);
 export const SignUpProvider = ({ children }: SignUpProviderProps) => {
   const router = useRouter();
   const { setUser } = useContext(AuthContext);
+  const { getMyProfileMutate } = useContext(AppContext);
 
   // STEP: create your account
   const [name, setName] = useState('');
@@ -71,6 +73,7 @@ export const SignUpProvider = ({ children }: SignUpProviderProps) => {
       await Auth.confirmSignUp(email, verificationCode);
       const user = await Auth.signIn(email, password);
       setUser(user);
+      await getMyProfileMutate();
       router.push(ROUTES.HOME);
       setVerifyLoading(false);
     } catch (error) {

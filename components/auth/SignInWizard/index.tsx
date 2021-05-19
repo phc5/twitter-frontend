@@ -3,11 +3,13 @@ import { useRouter } from 'next/router';
 import { Auth } from 'aws-amplify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AuthContext } from '../../../context/AuthContext';
+import { AppContext } from '../../../context/AppContext';
 import { ROUTES } from '../../../lib/constants';
 
 export default function SignInWizard() {
   const router = useRouter();
   const { setUser } = useContext(AuthContext);
+  const { getMyProfileMutate } = useContext(AppContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,6 +22,7 @@ export default function SignInWizard() {
       setSignInLoading(true);
       const user = await Auth.signIn(email, password);
       setUser(user);
+      await getMyProfileMutate();
       router.push(ROUTES.HOME);
       setSignInLoading(false);
     } catch (error) {
