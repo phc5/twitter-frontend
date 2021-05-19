@@ -62,8 +62,8 @@ export default function Layout({ children }: LayoutProps) {
             )}
           </header>
           <main className="flex-grow flex-shrink items-start overflow-y-scroll">
-            <div className="w-full lg:w-990 flex-grow flex-shrink">
-              <div className="flex-grow">
+            <div className="w-full h-full lg:w-990 flex-grow flex-shrink">
+              <div className="flex-grow h-full">
                 <div className="flex items-stretch justify-between flex-grow w-full min-h-full">
                   {children}
                 </div>
