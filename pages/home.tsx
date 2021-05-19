@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import Layout from '../components/Layout';
-import HomeContent from '../components/home/HomeContent'
+import HomeContent from '../components/home/HomeContent';
 import RightNav from '../components/shared/Layout/RightNav';
 
 import { AuthContext } from '../context/AuthContext';
