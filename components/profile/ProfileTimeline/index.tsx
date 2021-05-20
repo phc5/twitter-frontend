@@ -29,6 +29,7 @@ export default function ProfileTimeline() {
     getTweetsSize,
     getTweetsSetSize,
     getTweetsIsValidating,
+    getTweetsLoading,
   } = useContext(ProfileContext);
 
   return (
@@ -59,6 +60,7 @@ export default function ProfileTimeline() {
           size={getTweetsSize}
           setSize={getTweetsSetSize}
           isValidating={getTweetsIsValidating}
+          getTweetsLoading={getTweetsLoading}
         />
       </div>
     </div>

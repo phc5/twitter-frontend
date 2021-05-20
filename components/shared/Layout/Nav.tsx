@@ -5,6 +5,7 @@ import { IconName } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { NavContext } from '../../../context/NavContext';
+import { AppContext } from '../../../context/AppContext';
 import {
   NAVIGATION_ITEMS,
   ROUTES,
@@ -48,12 +49,23 @@ export default function Nav() {
 
 function NavigationItems() {
   const { pathname } = useRouter();
+  const { getMyProfileData } = useContext(AppContext);
 
   return (
     <>
       {NAVIGATION_ITEMS.map(({ displayName, href, icon }: NavigationItem) => {
         return (
-          <Link href={href} passHref key={displayName}>
+          <Link
+            href={
+              href === ROUTES.PROFILE
+                ? getMyProfileData
+                  ? getMyProfileData.username
+                  : ''
+                : href
+            }
+            passHref
+            key={displayName}
+          >
             <a
               className={`${
                 pathname === href ? 'text-blue' : ''

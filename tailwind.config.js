@@ -25,6 +25,7 @@ module.exports = {
         light: '#AAB8C2',
         lighter: '#E1E8ED',
         lightest: '#F5F8FA',
+        profileBlue: '#3B93D9',
       },
       margin: {
         '-3/20': '-15%',

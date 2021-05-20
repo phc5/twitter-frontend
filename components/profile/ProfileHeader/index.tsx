@@ -1,13 +1,17 @@
 import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Spinner from '../../shared/Spinner';
-import { AppContext } from '../../../context/AppContext';
+import { ProfileContext } from '../../../context/ProfileContext';
 
 export default function ProfileHeader() {
-  const { getMyProfileData } = useContext(AppContext);
+  const { getProfileData } = useContext(ProfileContext);
 
-  if (!getMyProfileData) {
-    return <Spinner className="text-blue -ml-1 mr-3" />;
+  if (!getProfileData) {
+    return (
+      <div className="flex items-center justify-center my-20">
+        <Spinner className="text-blue text-center" />
+      </div>
+    );
   }
 
   const {
@@ -17,7 +21,7 @@ export default function ProfileHeader() {
     createdAt,
     followingCount,
     followersCount,
-  } = getMyProfileData;
+  } = getProfileData;
 
   return (
     <div className="mb-4">
@@ -29,15 +33,11 @@ export default function ProfileHeader() {
           </div>
         </div>
         <div className="mb-4 px-4 pt-3 relative flex justify-between items-end">
-          <a className="flex items-end justify-between flex-wrap">
-            {imageUrl ? (
-              <img
-                className="absolute rounded-full overflow-hidden border-4 border-black cursor-pointer min-w-40px outline-none top-1/4 w-1/4 -ml-1 -mb-1 -mt-3/20"
-                src="/paulhyunchong.jpeg"
-              />
-            ) : (
-              <FontAwesomeIcon icon="user" className="text-2xl" />
-            )}
+          <a className="flex items-end justify-between flex-wrap w-1/4">
+            <img
+              className="object-scale-down bg-profileBlue absolute rounded-full h-36 w-36 overflow-hidden border-4 border-black outline-none top-1/4 -ml-1 -mb-1 -mt-3/20 min-w-40px"
+              src={imageUrl ? imageUrl : './twitter-egg.jpeg'}
+            />
           </a>
           <button className="border border-blue rounded-full text-blue px-4 py-2 text-base font-bold">
             Edit Profile

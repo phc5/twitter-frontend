@@ -20,6 +20,7 @@ type TimelineProps = {
   size: number;
   setSize: (size: number) => Promise<any[]>;
   isValidating: boolean;
+  getTweetsLoading?: boolean;
 };
 
 export default function Timeline({
@@ -29,6 +30,7 @@ export default function Timeline({
   size,
   setSize,
   isValidating,
+  getTweetsLoading,
 }: TimelineProps) {
   const [ref, setRef] = useState(null);
   const { isIntersecting } = useIntersectionObserver(ref, {
@@ -52,11 +54,7 @@ export default function Timeline({
       : await retweet(tweetId, mutate);
   }
 
-  if (error) {
-    return <ErrorTimeline />;
-  }
-
-  if (!data) {
+  if (!data || getTweetsLoading) {
     return (
       <div className="flex items-center justify-center h-20">
         <Spinner className="text-blue -ml-1 mr-3" />
@@ -64,13 +62,16 @@ export default function Timeline({
     );
   }
 
+  // if (error) {
+  //   return <ErrorTimeline />;
+  // }
   const tweetsArray =
     Array.isArray(data) &&
     data
       .map((page) => page.tweets)
       .flat(1)
       .filter((tweet) => tweet !== null);
-  const isEnd = data && data[data.length - 1].nextToken == null;
+  const isEnd = Array.isArray(data) && data[data.length - 1].nextToken == null;
 
   const tweets =
     tweetsArray.length > 0 ? (
@@ -105,7 +106,7 @@ export default function Timeline({
   return (
     <>
       {tweets}
-      {!isEnd && (
+      {!isEnd && tweetsArray.length > 0 && (
         <div ref={setRef} className="flex items-center justify-center h-20">
           <Spinner className="text-blue -ml-1 mr-3" />
         </div>

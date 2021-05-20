@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import Layout from '../components/Layout';
@@ -7,6 +7,7 @@ import RightNav from '../components/shared/Layout/RightNav';
 
 import { AuthContext } from '../context/AuthContext';
 import { HomeProvider } from '../context/HomeContext';
+import Link from 'next/link';
 
 export default function Home() {
   const { user } = useContext(AuthContext);
@@ -28,6 +29,9 @@ export default function Home() {
           <div className="border-b border-borderGray px-4 py-3 sticky top-0 bg-black z-20">
             <h1 className="text-xl font-extrabold">Home</h1>
           </div>
+          <Link href="/GuestV5MM5891" passHref>
+            <a>GUEST</a>
+          </Link>
           <HomeContent />
         </div>
 

@@ -18,8 +18,6 @@ export default function VerifyAccountStep({ setStep }: VerifyAccountProps) {
     resendVerificationCode,
   } = useContext(SignUpContext);
 
-  console.log(verificationCode?.length);
-
   const errorComponent = verifyError !== '' && (
     <div className="rounded-md bg-red-50 p-4 mt-4 text-center flex items-center">
       <FontAwesomeIcon
