@@ -9,7 +9,7 @@ This project aims to mirror the functionality of the Twitter web app. Since Twit
 - Queries:
   - Getting the current user's timeline ✅
   - Getting the current user's profile ✅
-  - Getting a user's profile
+  - Getting a user's profile ✅
   - Getting a user's tweets ✅
   - Getting a user's likes
   - Getting a user's followers
