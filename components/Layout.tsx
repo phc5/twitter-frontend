@@ -39,14 +39,14 @@ export default function Layout({ children }: LayoutProps) {
             {getMyProfileData && (
               <div className="bg-black fixed bottom-0 w-68 lg:w-275 px-4 py-4 flex justify-between items-center">
                 <div className="flex items-center px-3 py-2 tracking-tight leading-tight font-semibold text-base">
-                  <div>
-                    <img
-                      alt=""
-                      draggable="true"
-                      className="rounded-full lg:w-10 lg:h-10 mr-3"
-                      src="/paulhyunchong.jpeg"
-                    />
-                  </div>
+                  <img
+                    className="bg-profileBlue rounded-full border-4 border-black cursor-pointer outline-none w-14 h-14 mr-2"
+                    src={
+                      getMyProfileData.imageUrl
+                        ? getMyProfileData.imageUrl
+                        : './twitter-egg.jpg'
+                    }
+                  />
                   <div className="hidden lg:block">
                     <p>{getMyProfileData.name}</p>
                     <p className="text-lightGray font-normal w-36 overflow-ellipsis whitespace-nowrap overflow-hidden">

@@ -1,9 +1,10 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction, useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TextareaAutosize from 'react-textarea-autosize';
 import Spinner from '../Spinner';
 import CharacterCountCircle from '../CharacterCountCircle';
 import { tweet } from '../../../lib/backend/mutations';
+import { AppContext } from '../../../context/AppContext';
 
 type NewTweetProps = {
   isModal?: boolean;
@@ -16,8 +17,10 @@ export default function NewTweet({
   mutate,
   setIsTweetModalOpen,
 }: NewTweetProps) {
-  const [tweetValue, setTweetValue] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [tweetValue, setTweetValue] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const { getMyProfileData } = useContext(AppContext);
 
   async function onTweetClick(event) {
     event.preventDefault();
@@ -30,9 +33,14 @@ export default function NewTweet({
 
   return (
     <div className="flex px-4 p-2">
-      <div className="w-12 h-12 mt-1">
-        <FontAwesomeIcon icon="user" className="text-2xl w-full" />
-      </div>
+      <img
+        className="bg-profileBlue rounded-full border-4 border-black cursor-pointer outline-none w-14 h-14 mr-4"
+        src={
+          getMyProfileData?.imageUrl
+            ? getMyProfileData.imageUrl
+            : './twitter-egg.jpg'
+        }
+      />
 
       <div className="w-full mt-2">
         <label htmlFor="tweet" className="sr-only">
