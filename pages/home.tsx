@@ -29,9 +29,6 @@ export default function Home() {
           <div className="border-b border-borderGray px-4 py-3 sticky top-0 bg-black z-20">
             <h1 className="text-xl font-extrabold">Home</h1>
           </div>
-          <Link href="/GuestV5MM5891" passHref>
-            <a>GUEST</a>
-          </Link>
           <HomeContent />
         </div>
 
