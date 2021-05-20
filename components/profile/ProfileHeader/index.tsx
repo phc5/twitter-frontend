@@ -32,13 +32,13 @@ export default function ProfileHeader() {
             <div className="h-full w-full absolute top-0 left-0 bottom-0"></div>
           </div>
         </div>
-        <div className="mb-4 px-4 pt-3 relative flex justify-between items-end">
-          <a className="flex items-end justify-between flex-wrap w-1/4">
+        <div className="px-4 pt-3 relative flex justify-between items-end">
+          <div className="flex items-end justify-between flex-wrap">
             <img
-              className="object-scale-down bg-profileBlue absolute rounded-full h-36 w-36 overflow-hidden border-4 border-black outline-none top-1/4 -ml-1 -mb-1 -mt-3/20 min-w-40px"
-              src={imageUrl ? imageUrl : './twitter-egg.jpeg'}
+              className="object-scale-down bg-profileBlue absolute rounded-full overflow-hidden border-4 border-black cursor-pointer min-w-40px outline-none top-1/4 w-1/5 -ml-1 -mb-1 -mt-13/100"
+              src={imageUrl ? imageUrl : './twitter-egg.jpg'}
             />
-          </a>
+          </div>
           <button className="border border-blue rounded-full text-blue px-4 py-2 text-base font-bold">
             Edit Profile
           </button>

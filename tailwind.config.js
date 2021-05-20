@@ -28,9 +28,10 @@ module.exports = {
         profileBlue: '#3B93D9',
       },
       margin: {
-        '-3/20': '-15%',
+        '-13/100': '-13%',
       },
       maxWidth: {
+        36: '9rem',
         '600px': '600px',
       },
       minHeight: {
