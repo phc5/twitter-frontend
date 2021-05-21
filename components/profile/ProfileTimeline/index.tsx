@@ -21,8 +21,10 @@ function classNames(...classes: string[]) {
 }
 
 export default function ProfileTimeline() {
-  const [currentTab, setCurrentTab] = useState(0);
   const {
+    currentTab,
+    setCurrentTab,
+
     getTweetsData,
     getTweetsError,
     getTweetsMutate,
@@ -30,7 +32,61 @@ export default function ProfileTimeline() {
     getTweetsSetSize,
     getTweetsIsValidating,
     getTweetsLoading,
+
+    getLikesData,
+    getLikesError,
+    getLikesMutate,
+    getLikesSize,
+    getLikesSetSize,
+    getLikesIsValidating,
+    getLikesLoading,
   } = useContext(ProfileContext);
+
+  function renderContent() {
+    console.log(currentTab);
+    switch (currentTab) {
+      case 0:
+        return (
+          <Timeline
+            data={getTweetsData}
+            error={getTweetsError}
+            mutate={getTweetsMutate}
+            size={getTweetsSize}
+            setSize={getTweetsSetSize}
+            isValidating={getTweetsIsValidating}
+            getTweetsLoading={getTweetsLoading}
+          />
+        );
+      case 1:
+        return <></>;
+      case 2:
+        return <></>;
+      case 3:
+        return (
+          <Timeline
+            data={getLikesData}
+            error={getLikesError}
+            mutate={getLikesMutate}
+            size={getLikesSize}
+            setSize={getLikesSetSize}
+            isValidating={getLikesIsValidating}
+            getTweetsLoading={getLikesLoading}
+          />
+        );
+      default:
+        return (
+          <Timeline
+            data={getTweetsData}
+            error={getTweetsError}
+            mutate={getTweetsMutate}
+            size={getTweetsSize}
+            setSize={getTweetsSetSize}
+            isValidating={getTweetsIsValidating}
+            getTweetsLoading={getTweetsLoading}
+          />
+        );
+    }
+  }
 
   return (
     <div className="block">
@@ -39,7 +95,6 @@ export default function ProfileTimeline() {
           <a
             onClick={() => setCurrentTab(index)}
             key={tab.name}
-            href={tab.href}
             className={classNames(
               currentTab === index
                 ? 'border-b-2 border-blue text-blue'
@@ -52,17 +107,7 @@ export default function ProfileTimeline() {
           </a>
         ))}
       </nav>
-      <div>
-        <Timeline
-          data={getTweetsData}
-          error={getTweetsError}
-          mutate={getTweetsMutate}
-          size={getTweetsSize}
-          setSize={getTweetsSetSize}
-          isValidating={getTweetsIsValidating}
-          getTweetsLoading={getTweetsLoading}
-        />
-      </div>
+      <div>{renderContent()}</div>
     </div>
   );
 }

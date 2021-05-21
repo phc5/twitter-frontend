@@ -2,7 +2,7 @@ import { createContext, ReactNode, useEffect, useState, useRef } from 'react';
 import useSWR, { useSWRInfinite } from 'swr';
 import { useRouter } from 'next/router';
 
-import { getProfile, getTweets } from '../lib/backend/queries';
+import { getLikes, getProfile, getTweets } from '../lib/backend/queries';
 import getKey from '../lib/getKey';
 import useIsMountedRef from '../lib/hooks/useIsMountedRef';
 
@@ -15,6 +15,8 @@ export const ProfileContext = createContext(null);
 export const ProfileProvider = ({ children }: ProfileProviderProps) => {
   const isMounted = useIsMountedRef();
   const [getTweetsLoading, setGetTweetsLoading] = useState<boolean>(false);
+  const [getLikesLoading, setGetLikesLoading] = useState<boolean>(false);
+  const [currentTab, setCurrentTab] = useState<number>(0);
   const router = useRouter();
   const { username } = router.query;
 
@@ -42,6 +44,21 @@ export const ProfileProvider = ({ children }: ProfileProviderProps) => {
     (_, nextToken) => getTweets(getProfileData.id, nextToken)
   );
 
+  const {
+    data: getLikesData,
+    error: getLikesError,
+    mutate: getLikesMutate,
+    size: getLikesSize,
+    setSize: getLikesSetSize,
+    isValidating: getLikesIsValidating,
+  } = useSWRInfinite(
+    (pageIndex, previousPageData) =>
+      getProfileData
+        ? getKey(pageIndex, previousPageData, `getLikes${getProfileData.id}`)
+        : null,
+    (_, nextToken) => getLikes(getProfileData.id, nextToken)
+  );
+
   useEffect(() => {
     if (isMounted && username) {
       (async () => {
@@ -54,9 +71,33 @@ export const ProfileProvider = ({ children }: ProfileProviderProps) => {
     }
   }, [username]);
 
+  useEffect(() => {
+    console.log(currentTab, isMounted, username);
+    if (isMounted && username && getProfileData) {
+      (async () => {
+        switch (currentTab) {
+          case 0:
+            // @ts-ignore
+            await getTweetsMutate(`getTweets${getProfileData.id}`);
+          case 4:
+            setGetLikesLoading(true);
+            // @ts-ignore
+            await getLikesMutate(`getLikes${getProfileData.id}`);
+            setGetLikesLoading(false);
+        }
+      })();
+    }
+  }, [currentTab]);
+
   return (
     <ProfileContext.Provider
       value={{
+        // state
+        currentTab,
+        setCurrentTab,
+        getTweetsLoading,
+        getLikesLoading,
+
         // getProfile
         getProfileData,
         getProfileError,
@@ -71,7 +112,13 @@ export const ProfileProvider = ({ children }: ProfileProviderProps) => {
         getTweetsSetSize,
         getTweetsIsValidating,
 
-        getTweetsLoading,
+        // getLikes
+        getLikesData,
+        getLikesError,
+        getLikesMutate,
+        getLikesSize,
+        getLikesSetSize,
+        getLikesIsValidating,
       }}
     >
       {children}
