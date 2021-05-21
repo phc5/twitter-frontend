@@ -8,8 +8,18 @@ import ProfileHeader from '../components/profile/ProfileHeader';
 import ProfileTimeline from '../components/profile/ProfileTimeline';
 
 import { ProfileContext, ProfileProvider } from '../context/ProfileContext';
+import { AuthContext } from '../context/AuthContext';
 
 export default function Profile() {
+  const { user } = useContext(AuthContext);
+  const router = useRouter();
+  useEffect(() => {
+    if (!user) router.push('/');
+  }, [user]);
+
+  if (!user) {
+    return <h1>Loading...</h1>;
+  }
   return (
     <ProfileProvider>
       <Layout>

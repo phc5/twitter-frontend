@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 
 const up = 'inline-flex opacity-0 transform -translate-y-1';
 const down = 'inline-flex opacity-0 transform translate-y-1';
@@ -54,17 +55,23 @@ export default function Tweet({
 
   return (
     <div className="flex border-borderGray border-b p-4 hover:bg-gray-500 hover:bg-opacity-10 cursor-pointer text-sm">
-      <div className="mr-4">
-        {profile?.imageUrl ? (
-          <img src={profile.imageUrl} />
-        ) : (
-          <FontAwesomeIcon icon="user" className="text-2xl" />
-        )}
-      </div>
+      <Link href={`/${profile.username}`} passHref>
+        <a>
+          <img
+            className="bg-profileBlue rounded-full border-4 border-black cursor-pointer outline-none w-14 h-14 mr-4"
+            src={profile?.imageUrl ? profile.imageUrl : './twitter-egg.jpg'}
+          />
+        </a>
+      </Link>
+
       <div className="w-full">
         <div className="flex mb-2">
-          <p className="font-bold mr-1">{profile.name}</p>
-          <p className="text-lightGray mr-1">@{profile.username}</p>
+          <Link href={`/${profile.username}`} passHref>
+            <a className="flex">
+              <p className="font-bold mr-1">{profile.name}</p>
+              <p className="text-lightGray mr-1">@{profile.username}</p>
+            </a>
+          </Link>
           <p className="text-lightGray mr-1">·</p>
           <p className="text-lightGray mr-1">
             {new Date(createdAt).toLocaleDateString()}
