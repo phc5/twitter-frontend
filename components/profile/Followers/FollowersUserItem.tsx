@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { AppContext } from '../../../context/AppContext';
 
 export default function FollowersUserItem({ profile }) {
-  console.log(profile);
   const { getMyProfileData } = useContext(AppContext);
   return (
     <div className="flex border-borderGray border-b p-4 hover:bg-gray-500 hover:bg-opacity-10 cursor-pointer text-sm">

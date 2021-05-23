@@ -59,7 +59,7 @@ function NavigationItems() {
             href={
               href === ROUTES.PROFILE
                 ? getMyProfileData
-                  ? getMyProfileData.username
+                  ? `/${getMyProfileData.username}`
                   : ''
                 : href
             }
