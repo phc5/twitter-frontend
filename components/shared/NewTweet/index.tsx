@@ -38,7 +38,7 @@ export default function NewTweet({
         src={
           getMyProfileData?.imageUrl
             ? getMyProfileData.imageUrl
-            : './twitter-egg.jpg'
+            : '/twitter-egg.jpg'
         }
       />
 

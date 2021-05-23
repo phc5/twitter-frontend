@@ -7,7 +7,6 @@ import RightNav from '../components/shared/Layout/RightNav';
 
 import { AuthContext } from '../context/AuthContext';
 import { HomeProvider } from '../context/HomeContext';
-import Link from 'next/link';
 
 export default function Home() {
   const { user } = useContext(AuthContext);

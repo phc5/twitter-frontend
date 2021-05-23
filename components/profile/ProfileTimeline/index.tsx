@@ -43,7 +43,6 @@ export default function ProfileTimeline() {
   } = useContext(ProfileContext);
 
   function renderContent() {
-    console.log(currentTab);
     switch (currentTab) {
       case 0:
         return (

@@ -85,7 +85,7 @@ export default function Retweet({
               src={
                 retweetedProfile?.imageUrl
                   ? retweetedProfile.imageUrl
-                  : './twitter-egg.jpg'
+                  : '/twitter-egg.jpg'
               }
             />
           </a>

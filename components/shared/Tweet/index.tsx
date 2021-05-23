@@ -59,7 +59,7 @@ export default function Tweet({
         <a>
           <img
             className="bg-profileBlue rounded-full border-4 border-black cursor-pointer outline-none w-14 h-14 mr-4"
-            src={profile?.imageUrl ? profile.imageUrl : './twitter-egg.jpg'}
+            src={profile?.imageUrl ? profile.imageUrl : '/twitter-egg.jpg'}
           />
         </a>
       </Link>

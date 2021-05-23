@@ -2,13 +2,13 @@ import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Layout from '../components/Layout';
-import RightNav from '../components/shared/Layout/RightNav';
-import ProfileHeader from '../components/profile/ProfileHeader';
-import ProfileTimeline from '../components/profile/ProfileTimeline';
+import Layout from '../../components/Layout';
+import RightNav from '../../components/shared/Layout/RightNav';
+import ProfileHeader from '../../components/profile/ProfileHeader';
+import ProfileTimeline from '../../components/profile/ProfileTimeline';
 
-import { ProfileContext, ProfileProvider } from '../context/ProfileContext';
-import { AuthContext } from '../context/AuthContext';
+import { ProfileContext, ProfileProvider } from '../../context/ProfileContext';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function Profile() {
   const { user } = useContext(AuthContext);

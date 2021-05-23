@@ -13,12 +13,14 @@ type ProfileProviderProps = {
 export const ProfileContext = createContext(null);
 
 export const ProfileProvider = ({ children }: ProfileProviderProps) => {
+  const router = useRouter();
+  const { username } = router.query;
   const isMounted = useIsMountedRef();
+
+  // Tweets Tab State
   const [getTweetsLoading, setGetTweetsLoading] = useState<boolean>(false);
   const [getLikesLoading, setGetLikesLoading] = useState<boolean>(false);
   const [currentTab, setCurrentTab] = useState<number>(0);
-  const router = useRouter();
-  const { username } = router.query;
 
   const {
     data: getProfileData,
@@ -72,7 +74,6 @@ export const ProfileProvider = ({ children }: ProfileProviderProps) => {
   }, [username]);
 
   useEffect(() => {
-    console.log(currentTab, isMounted, username);
     if (isMounted && username && getProfileData) {
       (async () => {
         switch (currentTab) {

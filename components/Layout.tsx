@@ -44,7 +44,7 @@ export default function Layout({ children }: LayoutProps) {
                     src={
                       getMyProfileData.imageUrl
                         ? getMyProfileData.imageUrl
-                        : './twitter-egg.jpg'
+                        : '/twitter-egg.jpg'
                     }
                   />
                   <div className="hidden lg:block">

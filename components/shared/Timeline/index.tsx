@@ -62,9 +62,9 @@ export default function Timeline({
     );
   }
 
-  // if (error) {
-  //   return <ErrorTimeline />;
-  // }
+  if (error) {
+    return <ErrorTimeline />;
+  }
   const tweetsArray =
     Array.isArray(data) &&
     data
