@@ -22,9 +22,11 @@ export default function FollowersUserItem({ profile }) {
               <p className="font-bold mr-1">{profile.name}</p>
               <div className="flex">
                 <p className="text-lightGray mr-1">@{profile.username}</p>
-                <span className="bg-darkGray text-lightGray px-1 rounded-md text-xs flex items-center">
-                  Follows you
-                </span>
+                {profile.followedBy && (
+                  <span className="bg-darkGray text-lightGray px-1 rounded-md text-xs flex items-center">
+                    Follows you
+                  </span>
+                )}
               </div>
             </a>
           </Link>
