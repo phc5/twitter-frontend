@@ -33,12 +33,12 @@ export default function ProfileHeader() {
 
   async function handleFollowClick() {
     await follow(id);
-    await getProfileMutate(`getProfile${username}`);
+    await getProfileMutate({ ...getProfileData });
   }
 
   async function handleUnfollowClick() {
     await unfollow(id);
-    await getProfileMutate(`getProfile${username}`);
+    await getProfileMutate({ ...getProfileData });
   }
 
   return (
