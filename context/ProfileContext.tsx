@@ -22,6 +22,12 @@ export const ProfileProvider = ({ children }: ProfileProviderProps) => {
   const [getLikesLoading, setGetLikesLoading] = useState<boolean>(false);
   const [currentTab, setCurrentTab] = useState<number>(0);
 
+  useEffect(() => {
+    router.events.on('routeChangeComplete', () => {
+      setCurrentTab(0);
+    });
+  }, []);
+
   const {
     data: getProfileData,
     error: getProfileError,

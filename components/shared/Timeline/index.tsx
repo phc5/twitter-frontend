@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import useIntersectionObserver from '@react-hook/intersection-observer';
-import { SWRInfiniteResponse } from 'swr';
 import ErrorTimeline from './ErrorTimeline';
 import EmptyTimeline from './EmptyTimeline';
 import Tweet from '../Tweet';
@@ -12,6 +11,7 @@ import {
   unlike,
   unretweet,
 } from '../../../lib/backend/mutations';
+import { TimelineType } from '../../../lib/types';
 
 type TimelineProps = {
   data: any[];
@@ -21,6 +21,7 @@ type TimelineProps = {
   setSize: (size: number) => Promise<any[]>;
   isValidating: boolean;
   getTweetsLoading?: boolean;
+  timelineType?: TimelineType;
 };
 
 export default function Timeline({
@@ -31,6 +32,7 @@ export default function Timeline({
   setSize,
   isValidating,
   getTweetsLoading,
+  timelineType,
 }: TimelineProps) {
   const [ref, setRef] = useState(null);
   const { isIntersecting } = useIntersectionObserver(ref, {
@@ -100,7 +102,7 @@ export default function Timeline({
         }
       })
     ) : (
-      <EmptyTimeline />
+      <EmptyTimeline timelineType={timelineType} />
     );
 
   return (

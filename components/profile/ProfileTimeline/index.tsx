@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import Timeline from '../../shared/Timeline';
 
 import { ProfileContext } from '../../../context/ProfileContext';
+import { TimelineType } from '../../../lib/types';
 
 type Tab = {
   name: string;
@@ -70,6 +71,7 @@ export default function ProfileTimeline() {
             setSize={getLikesSetSize}
             isValidating={getLikesIsValidating}
             getTweetsLoading={getLikesLoading}
+            timelineType={TimelineType.Likes}
           />
         );
       default:
