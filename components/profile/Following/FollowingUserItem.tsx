@@ -4,6 +4,8 @@ import { AppContext } from '../../../context/AppContext';
 
 export default function FollowingUserItem({ profile }) {
   const { getMyProfileData } = useContext(AppContext);
+  console.log(profile);
+
   return (
     <div className="flex border-borderGray border-b p-4 hover:bg-gray-500 hover:bg-opacity-10 cursor-pointer text-sm">
       <Link href={`/${profile.username}`} passHref>
@@ -20,7 +22,14 @@ export default function FollowingUserItem({ profile }) {
           <Link href={`/${profile.username}`} passHref>
             <a className="flex flex-col">
               <p className="font-bold mr-1">{profile.name}</p>
-              <p className="text-lightGray mr-1">@{profile.username}</p>
+              <div className="flex">
+                <p className="text-lightGray mr-1">@{profile.username}</p>
+                {profile.followedBy && (
+                  <span className="bg-darkGray text-lightGray px-1 rounded-md text-xs flex items-center">
+                    Follows you
+                  </span>
+                )}
+              </div>
             </a>
           </Link>
           {profile.id !== getMyProfileData.id &&
