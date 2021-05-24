@@ -21,7 +21,7 @@ This project aims to mirror the functionality of the Twitter web app. Since Twit
   - Like/Unlike a Tweet ✅
   - Retweet/Unretweet a Tweet ✅
   - Reply to a Tweet
-  - Follow/Unfollow a user
+  - Follow/Unfollow a user ✅
   - Edit profile
 - Subscriptions:
   - Notify on retweet

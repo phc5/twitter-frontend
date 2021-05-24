@@ -4,9 +4,12 @@ import Link from 'next/link';
 
 import Spinner from '../../shared/Spinner';
 import { ProfileContext } from '../../../context/ProfileContext';
+import { AppContext } from '../../../context/AppContext';
+import { follow, unfollow } from '../../../lib/backend/mutations';
 
 export default function ProfileHeader() {
-  const { getProfileData } = useContext(ProfileContext);
+  const { getMyProfileData } = useContext(AppContext);
+  const { getProfileData, getProfileMutate } = useContext(ProfileContext);
 
   if (!getProfileData) {
     return (
@@ -24,7 +27,19 @@ export default function ProfileHeader() {
     followingCount,
     followersCount,
     followedBy,
+    following,
+    id,
   } = getProfileData;
+
+  async function handleFollowClick() {
+    await follow(id);
+    await getProfileMutate(`getProfile${username}`);
+  }
+
+  async function handleUnfollowClick() {
+    await unfollow(id);
+    await getProfileMutate(`getProfile${username}`);
+  }
 
   return (
     <div className="mb-4">
@@ -42,9 +57,25 @@ export default function ProfileHeader() {
               src={imageUrl ? imageUrl : '/twitter-egg.jpg'}
             />
           </div>
-          <button className="border border-blue rounded-full text-blue px-4 py-2 text-base font-bold">
-            Edit Profile
-          </button>
+          {getMyProfileData.id === getProfileData.id ? (
+            <button className="border border-blue rounded-full text-blue px-4 py-2 text-base font-bold">
+              Edit Profile
+            </button>
+          ) : following ? (
+            <button
+              className="bg-blue border border-blue rounded-full text-white px-4 py-2 text-base font-bold focus:outline-none"
+              onClick={handleUnfollowClick}
+            >
+              Following
+            </button>
+          ) : (
+            <button
+              className="border border-blue rounded-full text-blue px-4 py-2 text-base font-bold focus:outline-none"
+              onClick={handleFollowClick}
+            >
+              Follow
+            </button>
+          )}
         </div>
 
         <div className="px-4">
